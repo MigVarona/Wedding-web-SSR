@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#2A2527] px-4 py-8 flex flex-col items-center justify-between">
+    <main className="min-h-screen bg-[#ffce1e] px-4 py-8 flex flex-col items-center justify-between">
       <header className="w-full flex justify-between items-center text-[#F5F0E8] text-xs sm:text-sm">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-full bg-[#F5F0E8] flex items-center justify-center text-[#2A2527]">
@@ -15,39 +15,50 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="container mx-auto text-center my-12">
-        <h1 className="flex flex-wrap justify-center items-center gap-4 md:gap-8">
-          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[14rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+      <div className="text-center mt-20">
+        <h1 className="flex flex-wrap justify-center items-center">
+          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
             CRISTINA
           </span>
-          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[14rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
             MIGUEL
           </span>
         </h1>
-        <div className="mt-8 flex justify-end">
-          <div className="text-right">
-            <p className="text-xl md:text-2xl text-[#F5F0E8] mb-2">
-              A Versatile<br />
-              and Modern<br />
-              Typeface
-            </p>
-            <p className="text-lg md:text-xl text-[#FFB7D5]">
-              Characterized<br />
-              By Its Narrow<br />
-              Streamlined<br />
-              Letterforms
-            </p>
-          </div>
-        </div>
+        <img
+          src="/y2k Asset by Annorastd-19.svg"
+          alt="Icono decorativo"
+          className="w-[900px] h-[100px] mx-auto mt-4 text-slate-50"
+        />
+        <h1 className="flex mt-8 flex-wrap justify-center items-center">
+          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+            Turkashila
+          </span>
+          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+            Casavieja
+          </span>
+        </h1>
+        <section className="w-full max-w-2xl mx-auto mt-20 my-8 bg-[#FFB7D5] p-4 rounded-lg">
+          <iframe
+            style={{ borderRadius: "12px" }}
+            src="https://open.spotify.com/embed/playlist/2fOGsYH2vNUrVBfOB8P5q0?utm_source=generator"
+            width="100%"
+            height="152"
+            frameBorder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          ></iframe>
+        </section>
       </div>
 
       <footer className="w-full flex justify-between items-end text-[#F5F0E8] text-xs sm:text-sm">
         <p className="max-w-2xl">
-          A versatile and modern typeface characterized by its narrow, streamlined letterforms. This font is ideal for 
-          space-efficient design, offering a clean and elegant aesthetic without compromising readability.
+          A versatile and modern typeface characterized by its narrow,
+          streamlined letterforms. This font is ideal for space-efficient
+          design, offering a clean and elegant aesthetic without compromising
+          readability.
         </p>
         <span>Follow Me at @dannyaldana</span>
       </footer>
     </main>
-  )
+  );
 }
