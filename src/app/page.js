@@ -5,9 +5,13 @@ import RSVPForm from "../app/components/RsvpForm";
 import FileUpload from "../app/components/FileUpload";
 import { ChevronDown } from "lucide-react";
 import GuestBookForm from "../app/components/GuestBookForm";
+import { Zap } from "lucide-react"; // Asegúrate de tener la librería lucide-react instalada
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
+  const [showPlayer, setShowPlayer] = useState(false);
+
+  
 
   // Función para obtener los mensajes del libro de visitas
   const fetchMessages = async () => {
@@ -26,9 +30,35 @@ export default function Home() {
     setMessages((prevMessages) => [newMessage, ...prevMessages]);
   };
 
+  // Función para mostrar el reproductor de Spotify
+  const handlePlayClick = () => {
+    setShowPlayer(true); // Muestra el iframe cuando se hace clic en el ícono
+  };
+
   return (
-    <main className="min-h-screen bg-[#ffce1e] px-4 py-8 flex flex-col items-center justify-between">
-      <div className="text-center mt-20">
+    <main className="min-h-screen bg-[#ffce1e] flex flex-col items-center justify-between">
+      <div className="text-center ">
+        {/* Sección del reproductor de Spotify */}
+        <section className=" mb-20  my-8  p-4 rounded-lg">
+          {!showPlayer ? (
+            <button
+              onClick={handlePlayClick}
+              className="flex justify-center items-center bg-[#F5F0E8] text-[#FFB7D5] p-4 rounded-full"
+            >
+              <Zap size={48} /> {/* Ícono de música */}
+            </button>
+          ) : (
+            <iframe
+              style={{ borderRadius: "12px" }}
+              src="https://open.spotify.com/embed/playlist/2fOGsYH2vNUrVBfOB8P5q0?utm_source=generator"
+              width="35%"
+              height="152"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            ></iframe>
+          )}
+        </section>
         <h1 className="flex flex-wrap justify-center items-center">
           <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
             CRISTINA
@@ -59,17 +89,7 @@ export default function Home() {
           <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
         </div>
 
-        <section className="w-full max-w-2xl mx-auto mt-20 my-8 bg-[#FFB7D5] p-4 rounded-lg">
-          <iframe
-            style={{ borderRadius: "12px" }}
-            src="https://open.spotify.com/embed/playlist/2fOGsYH2vNUrVBfOB8P5q0?utm_source=generator"
-            width="100%"
-            height="152"
-            frameBorder="0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          ></iframe>
-        </section>
+        
 
         <div className="flex justify-center items-center mt-30">
           <iframe
@@ -97,7 +117,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Comparte tus fotos!</h2>
           <FileUpload />
         </section>
-        
+
         {/* Sección para dejar mensajes */}
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
           <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Deja un mensaje en nuestro libro de visitas</h2>
@@ -121,7 +141,6 @@ export default function Home() {
             )}
           </div>
         </section>
-
       </div>
 
       <footer className="w-full flex justify-between items-end text-[#F5F0E8] text-xs sm:text-sm">

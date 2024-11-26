@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/app/components/ui/button";
+
 
 const GuestBookForm = ({ onNewMessage }) => {
   const [message, setMessage] = useState("");
@@ -62,12 +64,12 @@ const GuestBookForm = ({ onNewMessage }) => {
           required
         />
       </div>
-      <button
+      <Button
         type="submit"
-        className="w-full bg-[#F5F0E8] text-[#FFB7D5] font-bold py-2 rounded"
+        className="w-full mt-6 bg-[#ffce1e] text-[#2A2527] hover:bg-[#ffd84e]"
       >
-        Enviar mensaje
-      </button>
+        Enviar!
+      </Button>
     </form>
   );
 };
