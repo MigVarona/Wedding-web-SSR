@@ -25,7 +25,15 @@ export default function Home() {
           <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
             Casavieja
           </span>
+          
         </h1>
+        <h1 className="flex flex-wrap justify-center items-center">
+          <span className="mi-fuente-personalizada text-2xl sm:text-2xl md:text-5xl lg:text-5xl xl:text-[2rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+            20/09
+          </span>
+         
+        </h1>
+
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8 bg-[#FFB7D5] p-4 rounded-lg">
           <iframe
@@ -38,6 +46,11 @@ export default function Home() {
             loading="lazy"
           ></iframe>
         </section>
+        <img
+          src="/y2k Asset by Annorastd-19.svg"
+          alt="Icono decorativo"
+          className="w-[900px] h-[100px] mx-auto mt-4 text-slate-50"
+        />
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
           <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Reserva tu sitio!</h2>
