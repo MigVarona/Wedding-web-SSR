@@ -2,7 +2,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 
 const miFuente = localFont({
-  src: './fonts/DailyShine-Regular.otf',
+  src: './fonts/LEMONMILK-Bold.otf',
   variable: '--font-mi-fuente'
 })
 

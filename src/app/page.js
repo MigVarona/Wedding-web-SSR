@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import RSVPForm from "../app/components/RsvpForm";
@@ -10,8 +10,6 @@ import { Zap } from "lucide-react"; // Asegúrate de tener la librería lucide-r
 export default function Home() {
   const [messages, setMessages] = useState([]);
   const [showPlayer, setShowPlayer] = useState(false);
-
-  
 
   // Función para obtener los mensajes del libro de visitas
   const fetchMessages = async () => {
@@ -89,8 +87,6 @@ export default function Home() {
           <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
         </div>
 
-        
-
         <div className="flex justify-center items-center mt-30">
           <iframe
             src="https://giphy.com/embed/VKQBveX0MZu1PXRFE8"
@@ -106,34 +102,77 @@ export default function Home() {
         </div>
 
         <section className="w-full max-w-2xl mx-auto my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Reserva tu sitio!</h2>
+          <h2 className="flex flex-wrap justify-center items-center">
+            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+              Reserva
+            </span>
+            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+              tusitio
+            </span>
+          </h2>{" "}
+          <img
+            src="49.svg"
+            alt="Icono decorativo"
+            className="w-[900px] h-[100px] mx-auto mt-4 mb-6 text-slate-50"
+          />
           <RSVPForm />
         </section>
         <div className="flex justify-center mt-8">
           <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
         </div>
+       
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Comparte tus fotos!</h2>
+          <h2 className="flex mb-20 flex-wrap justify-center items-center">
+            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+              Sube
+            </span>
+            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+              tusfotos
+            </span>
+          </h2>{" "}
+          
           <FileUpload />
         </section>
+        <div className="flex justify-center items-center mt-30">
+          <iframe
+            src="https://giphy.com/embed/IUEG0DmJxgRWM"
+            width="300"
+            height="300"
+            frameBorder="0"
+            className="giphy-embed"
+            allowFullScreen
+          ></iframe>
+        </div>
 
         {/* Sección para dejar mensajes */}
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Deja un mensaje en nuestro libro de visitas</h2>
+        <h2 className="flex mb-20 flex-wrap justify-center items-center">
+            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+              Dejanos
+            </span>
+            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+              un mensaje
+            </span>
+          </h2>{" "}
+          
           <GuestBookForm onNewMessage={handleNewMessage} />
         </section>
 
         {/* Sección para mostrar los mensajes */}
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Mensajes Recibidos</h2>
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">
+            Mensajes Recibidos
+          </h2>
           <div className="space-y-4">
             {messages.length > 0 ? (
               messages.map((message) => (
                 <div key={message._id} className="bg-[#F5F0E8] p-4 rounded-lg">
                   <p className="font-bold text-lg">{message.name}</p>
                   <p>{message.message}</p>
-                  <p className="text-sm text-gray-500">{new Date(message.timestamp).toLocaleString()}</p>
+                  <p className="text-sm text-gray-500">
+                    {new Date(message.timestamp).toLocaleString()}
+                  </p>
                 </div>
               ))
             ) : (
