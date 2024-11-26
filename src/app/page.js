@@ -1,8 +1,31 @@
+"use client"
+
+import { useEffect, useState } from "react";
 import RSVPForm from "../app/components/RsvpForm";
 import FileUpload from "../app/components/FileUpload";
 import { ChevronDown } from "lucide-react";
+import GuestBookForm from "../app/components/GuestBookForm";
 
 export default function Home() {
+  const [messages, setMessages] = useState([]);
+
+  // Función para obtener los mensajes del libro de visitas
+  const fetchMessages = async () => {
+    const response = await fetch("/api/guestbook");
+    const data = await response.json();
+    setMessages(data);
+  };
+
+  // Usar useEffect para cargar los mensajes al montar el componente
+  useEffect(() => {
+    fetchMessages();
+  }, []);
+
+  // Función para actualizar los mensajes después de enviar uno nuevo
+  const handleNewMessage = (newMessage) => {
+    setMessages((prevMessages) => [newMessage, ...prevMessages]);
+  };
+
   return (
     <main className="min-h-screen bg-[#ffce1e] px-4 py-8 flex flex-col items-center justify-between">
       <div className="text-center mt-20">
@@ -49,8 +72,6 @@ export default function Home() {
         </section>
 
         <div className="flex justify-center items-center mt-30">
-          {" "}
-          {/* Centrado en el eje horizontal y vertical */}
           <iframe
             src="https://giphy.com/embed/VKQBveX0MZu1PXRFE8"
             width="300"
@@ -65,9 +86,7 @@ export default function Home() {
         </div>
 
         <section className="w-full max-w-2xl mx-auto my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">
-            Reserva tu sitio!
-          </h2>
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Reserva tu sitio!</h2>
           <RSVPForm />
         </section>
         <div className="flex justify-center mt-8">
@@ -75,11 +94,34 @@ export default function Home() {
         </div>
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">
-            Comparte tus fotos!
-          </h2>
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Comparte tus fotos!</h2>
           <FileUpload />
         </section>
+        
+        {/* Sección para dejar mensajes */}
+        <section className="w-full max-w-2xl mx-auto mt-20 my-8">
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Deja un mensaje en nuestro libro de visitas</h2>
+          <GuestBookForm onNewMessage={handleNewMessage} />
+        </section>
+
+        {/* Sección para mostrar los mensajes */}
+        <section className="w-full max-w-2xl mx-auto mt-20 my-8">
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Mensajes Recibidos</h2>
+          <div className="space-y-4">
+            {messages.length > 0 ? (
+              messages.map((message) => (
+                <div key={message._id} className="bg-[#F5F0E8] p-4 rounded-lg">
+                  <p className="font-bold text-lg">{message.name}</p>
+                  <p>{message.message}</p>
+                  <p className="text-sm text-gray-500">{new Date(message.timestamp).toLocaleString()}</p>
+                </div>
+              ))
+            ) : (
+              <p>No hay mensajes aún.</p>
+            )}
+          </div>
+        </section>
+
       </div>
 
       <footer className="w-full flex justify-between items-end text-[#F5F0E8] text-xs sm:text-sm">
