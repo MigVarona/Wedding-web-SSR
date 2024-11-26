@@ -1,3 +1,5 @@
+import RSVPForm from '../app/components/RsvpForm';
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#ffce1e] px-4 py-8 flex flex-col items-center justify-between">
@@ -49,6 +51,11 @@ export default function Home() {
             loading="lazy"
           ></iframe>
         </section>
+
+        <section className="w-full max-w-2xl mx-auto mt-20 my-8">
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]"></h2>
+          <RSVPForm />
+        </section>
       </div>
 
       <footer className="w-full flex justify-between items-end text-[#F5F0E8] text-xs sm:text-sm">
@@ -63,3 +70,4 @@ export default function Home() {
     </main>
   );
 }
+
