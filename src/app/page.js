@@ -1,5 +1,6 @@
 import RSVPForm from '../app/components/RsvpForm';
 import FileUpload from '../app/components/FileUpload';
+import { ChevronDown } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -25,15 +26,15 @@ export default function Home() {
           <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
             Casavieja
           </span>
-          
         </h1>
         <h1 className="flex flex-wrap justify-center items-center">
           <span className="mi-fuente-personalizada text-2xl sm:text-2xl md:text-5xl lg:text-5xl xl:text-[2rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
             20/09
           </span>
-         
         </h1>
-
+        <div className="flex justify-center mt-8">
+          <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
+        </div>
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8 bg-[#FFB7D5] p-4 rounded-lg">
           <iframe
@@ -46,6 +47,9 @@ export default function Home() {
             loading="lazy"
           ></iframe>
         </section>
+
+       
+
         <img
           src="/y2k Asset by Annorastd-19.svg"
           alt="Icono decorativo"
