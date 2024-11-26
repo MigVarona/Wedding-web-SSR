@@ -1,6 +1,6 @@
-import RSVPForm from '../app/components/RsvpForm';
-import FileUpload from '../app/components/FileUpload';
-import { ChevronDown } from 'lucide-react';
+import RSVPForm from "../app/components/RsvpForm";
+import FileUpload from "../app/components/FileUpload";
+import { ChevronDown } from "lucide-react";
 
 export default function Home() {
   return (
@@ -48,21 +48,36 @@ export default function Home() {
           ></iframe>
         </section>
 
-       
+        <div className="flex justify-center items-center mt-30">
+          {" "}
+          {/* Centrado en el eje horizontal y vertical */}
+          <iframe
+            src="https://giphy.com/embed/VKQBveX0MZu1PXRFE8"
+            width="300"
+            height="300"
+            frameBorder="0"
+            className="giphy-embed"
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div className="flex justify-center mt-8">
+          <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
+        </div>
 
-        <img
-          src="/y2k Asset by Annorastd-19.svg"
-          alt="Icono decorativo"
-          className="w-[900px] h-[100px] mx-auto mt-4 text-slate-50"
-        />
-
-        <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Reserva tu sitio!</h2>
+        <section className="w-full max-w-2xl mx-auto my-8">
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">
+            Reserva tu sitio!
+          </h2>
           <RSVPForm />
         </section>
+        <div className="flex justify-center mt-8">
+          <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
+        </div>
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Comparte tus fotos!</h2>
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">
+            Comparte tus fotos!
+          </h2>
           <FileUpload />
         </section>
       </div>
@@ -79,4 +94,3 @@ export default function Home() {
     </main>
   );
 }
-
