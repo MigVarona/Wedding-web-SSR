@@ -30,13 +30,14 @@ export default function Home() {
           className="w-[900px] h-[100px] mx-auto mt-4 text-slate-50"
         />
         <h1 className="flex mt-8 flex-wrap justify-center items-center">
-          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+          <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
             Turkashila
           </span>
-          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+          <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
             Casavieja
           </span>
         </h1>
+
         <section className="w-full max-w-2xl mx-auto mt-20 my-8 bg-[#FFB7D5] p-4 rounded-lg">
           <iframe
             style={{ borderRadius: "12px" }}
