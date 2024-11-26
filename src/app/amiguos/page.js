@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   const [rsvps, setRsvps] = useState([]); // Para almacenar los datos de RSVP
@@ -42,13 +43,13 @@ export default function Home() {
   // Función para sumar las personas por categoría de alojamiento
   const sumGuestsByAccommodation = () => {
     return rsvps.reduce((acc, rsvp) => {
-      const accommodation = rsvp.accommodation || 'Sin alojamiento'; // Asegúrate de manejar los valores vacíos
+      const accommodation = rsvp.accommodation || "Sin alojamiento"; // Asegúrate de manejar los valores vacíos
       const guests = parseInt(rsvp.guests, 10); // Asegúrate de convertir a número
 
       if (!acc[accommodation]) {
         acc[accommodation] = 0;
       }
-      
+
       acc[accommodation] += guests; // Suma correctamente las personas
       return acc;
     }, {});
@@ -59,14 +60,16 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#ffce1e] px-4 py-8 flex flex-col items-center justify-between">
       <div className="text-center mt-20">
-        <h1 className="flex flex-wrap justify-center items-center">
-          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
-            CRISTINA
-          </span>
-          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
-            MIGUEL
-          </span>
-        </h1>
+        <Link href="/" passHref>
+          <h1 className="flex flex-wrap justify-center items-center">
+            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+              CRISTINA
+            </span>
+            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+              MIGUEL
+            </span>
+          </h1>
+        </Link>
         <img
           src="/y2k Asset by Annorastd-19.svg"
           alt="Icono decorativo"
@@ -101,8 +104,12 @@ export default function Home() {
               {rsvps.map((rsvp) => (
                 <li key={rsvp._id} className="bg-[#FFB7D5] p-4 rounded-lg">
                   <h3 className="font-bold text-[#2A2527]">{rsvp.name}</h3>
-                  <p className="text-[#2A2527]">Número de personas: {rsvp.guests}</p>
-                  <p className="text-[#2A2527]">Alojamiento: {rsvp.accommodation}</p>
+                  <p className="text-[#2A2527]">
+                    Número de personas: {rsvp.guests}
+                  </p>
+                  <p className="text-[#2A2527]">
+                    Alojamiento: {rsvp.accommodation}
+                  </p>
                   {/* Botón para eliminar el RSVP */}
                   <button
                     onClick={() => deleteRsvp(rsvp._id)}
@@ -125,7 +132,9 @@ export default function Home() {
             {Object.keys(accommodationSummary).map((accommodation) => (
               <li key={accommodation} className="bg-[#FFB7D5] p-4 rounded-lg">
                 <h3 className="font-bold text-[#2A2527]">{accommodation}</h3>
-                <p className="text-[#2A2527]">Total de personas: {accommodationSummary[accommodation]}</p>
+                <p className="text-[#2A2527]">
+                  Total de personas: {accommodationSummary[accommodation]}
+                </p>
               </li>
             ))}
           </ul>
