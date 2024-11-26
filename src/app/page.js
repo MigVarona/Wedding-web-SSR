@@ -40,12 +40,12 @@ export default function Home() {
         </section>
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">RSVP</h2>
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Reserva tu sitio!</h2>
           <RSVPForm />
         </section>
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Subir archivo</h2>
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Comparte tus fotos!</h2>
           <FileUpload />
         </section>
       </div>
