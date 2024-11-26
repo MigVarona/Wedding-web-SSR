@@ -1,22 +1,9 @@
 import RSVPForm from '../app/components/RsvpForm';
+import FileUpload from '../app/components/FileUpload';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#ffce1e] px-4 py-8 flex flex-col items-center justify-between">
-      <header className="w-full flex justify-between items-center text-[#F5F0E8] text-xs sm:text-sm">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-[#F5F0E8] flex items-center justify-center text-[#2A2527]">
-            TGS
-          </div>
-          <span>The Good Score Type Foundry</span>
-        </div>
-        <div className="flex gap-4">
-          <span>Designed by Danny Aldana</span>
-          <span>Published by The Good Score</span>
-          <span>©2024</span>
-        </div>
-      </header>
-
       <div className="text-center mt-20">
         <h1 className="flex flex-wrap justify-center items-center">
           <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
@@ -53,8 +40,13 @@ export default function Home() {
         </section>
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]"></h2>
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">RSVP</h2>
           <RSVPForm />
+        </section>
+
+        <section className="w-full max-w-2xl mx-auto mt-20 my-8">
+          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">Subir archivo</h2>
+          <FileUpload />
         </section>
       </div>
 
