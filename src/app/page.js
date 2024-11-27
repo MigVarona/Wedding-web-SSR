@@ -107,17 +107,17 @@ export default function Home() {
 
         <section className="w-full max-w-2xl mx-auto my-8">
           <h2 className="flex flex-wrap justify-center items-center">
-            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+            <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
               Reserva
             </span>
-            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+            <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
               tusitio
             </span>
           </h2>{" "}
           <img
             src="49.svg"
             alt="Icono decorativo"
-            className="w-[900px] h-[100px] mx-auto mt-4 mb-6 text-slate-50"
+            className="w-[900px] h-[100px] mx-auto mt-7 mb-8 text-slate-50"
           />
           <RSVPForm />
         </section>
@@ -127,10 +127,10 @@ export default function Home() {
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
           <h2 className="flex mb-20 flex-wrap justify-center items-center">
-            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+            <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
               Sube
             </span>
-            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+            <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
               tusfotos
             </span>
           </h2>{" "}
@@ -150,11 +150,11 @@ export default function Home() {
         {/* Sección para dejar mensajes */}
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
           <h2 className="flex mb-20 flex-wrap justify-center items-center">
-            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
-              Dejanos
+            <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+              DejaTu
             </span>
-            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
-              un mensaje
+            <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+              mensaje
             </span>
           </h2>{" "}
           <GuestBookForm onNewMessage={handleNewMessage} />
