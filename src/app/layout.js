@@ -11,6 +11,11 @@ const miFuente2 = localFont({
   variable: '--font-mi-fuente2'
 })
 
+
+
+
+
+
 export const metadata = {
   title: 'Mi App con Fuentes Personalizadas',
   description: 'Una aplicación Next.js con fuentes personalizadas .otf',

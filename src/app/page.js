@@ -38,26 +38,25 @@ export default function Home() {
       <div className="text-center ">
         {/* Sección del reproductor de Spotify */}
         <section className="my-8 p-4 rounded-lg lg:transform lg:-translate-x-32">
-  {!showPlayer ? (
-    <button
-      onClick={handlePlayClick}
-      className="flex justify-center items-center bg-[#F5F0E8] text-[#FFB7D5] p-4 rounded-full"
-    >
-      <Headphones size={20} /> {/* Ícono de música */}
-    </button>
-  ) : (
-    <iframe
-      style={{ borderRadius: "12px" }}
-      src="https://open.spotify.com/embed/playlist/2fOGsYH2vNUrVBfOB8P5q0?utm_source=generator"
-      width="75%"
-      height="152"
-      frameBorder="0"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"
-    ></iframe>
-  )}
-</section>
-
+          {!showPlayer ? (
+            <button
+              onClick={handlePlayClick}
+              className="flex justify-center items-center bg-[#F5F0E8] text-[#FFB7D5] p-4 rounded-full"
+            >
+              <Headphones size={20} /> {/* Ícono de música */}
+            </button>
+          ) : (
+            <iframe
+              style={{ borderRadius: "12px" }}
+              src="https://open.spotify.com/embed/playlist/2fOGsYH2vNUrVBfOB8P5q0?utm_source=generator"
+              width="75%"
+              height="152"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            ></iframe>
+          )}
+        </section>
 
         <h1 className="flex flex-wrap justify-center items-center">
           <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
