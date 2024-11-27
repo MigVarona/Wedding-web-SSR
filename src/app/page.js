@@ -5,7 +5,7 @@ import RSVPForm from "../app/components/RsvpForm";
 import FileUpload from "../app/components/FileUpload";
 import { ChevronDown } from "lucide-react";
 import GuestBookForm from "../app/components/GuestBookForm";
-import { Zap } from "lucide-react"; // Asegúrate de tener la librería lucide-react instalada
+import { Headphones } from "lucide-react"; // Asegúrate de tener la librería lucide-react instalada
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
@@ -37,31 +37,33 @@ export default function Home() {
     <main className="min-h-screen bg-[#ffce1e] flex flex-col items-center justify-between">
       <div className="text-center ">
         {/* Sección del reproductor de Spotify */}
-        <section className=" mb-20  my-8  p-4 rounded-lg">
-          {!showPlayer ? (
-            <button
-              onClick={handlePlayClick}
-              className="flex justify-center items-center bg-[#F5F0E8] text-[#FFB7D5] p-4 rounded-full"
-            >
-              <Zap size={48} /> {/* Ícono de música */}
-            </button>
-          ) : (
-            <iframe
-              style={{ borderRadius: "12px" }}
-              src="https://open.spotify.com/embed/playlist/2fOGsYH2vNUrVBfOB8P5q0?utm_source=generator"
-              width="75%"
-              height="152"
-              frameBorder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-            ></iframe>
-          )}
-        </section>
+        <section className="my-8 p-4 rounded-lg lg:transform lg:-translate-x-32">
+  {!showPlayer ? (
+    <button
+      onClick={handlePlayClick}
+      className="flex justify-center items-center bg-[#F5F0E8] text-[#FFB7D5] p-4 rounded-full"
+    >
+      <Headphones size={20} /> {/* Ícono de música */}
+    </button>
+  ) : (
+    <iframe
+      style={{ borderRadius: "12px" }}
+      src="https://open.spotify.com/embed/playlist/2fOGsYH2vNUrVBfOB8P5q0?utm_source=generator"
+      width="75%"
+      height="152"
+      frameBorder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+    ></iframe>
+  )}
+</section>
+
+
         <h1 className="flex flex-wrap justify-center items-center">
-          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+          <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
             CRISTINA
           </span>
-          <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+          <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
             MIGUEL
           </span>
         </h1>
@@ -71,18 +73,20 @@ export default function Home() {
           className="w-[900px] h-[100px] mx-auto mt-4 text-slate-50"
         />
         <h1 className="flex mt-8 flex-wrap justify-center items-center">
-          <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+          <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#F5F0E8] mb-2 sm:mb-0">
             Turkashila
           </span>
           <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
             Casavieja
           </span>
         </h1>
+
         <h1 className="flex flex-wrap justify-center items-center">
-          <span className="mi-fuente-personalizada text-2xl sm:text-2xl md:text-5xl lg:text-5xl xl:text-[2rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+          <span className="mi-fuente-personalizada text-2xl sm:text-2xl md:text-5xl lg:text-5xl xl:text-[2rem] font-bold leading-none tracking-wide text-[#F5F0E8] mt-4">
             20/09
           </span>
         </h1>
+
         <div className="flex justify-center mt-8">
           <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
         </div>
@@ -120,7 +124,6 @@ export default function Home() {
         <div className="flex justify-center mt-8">
           <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
         </div>
-       
 
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
           <h2 className="flex mb-20 flex-wrap justify-center items-center">
@@ -131,7 +134,6 @@ export default function Home() {
               tusfotos
             </span>
           </h2>{" "}
-          
           <FileUpload />
         </section>
         <div className="flex justify-center items-center mt-30">
@@ -147,7 +149,7 @@ export default function Home() {
 
         {/* Sección para dejar mensajes */}
         <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-        <h2 className="flex mb-20 flex-wrap justify-center items-center">
+          <h2 className="flex mb-20 flex-wrap justify-center items-center">
             <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
               Dejanos
             </span>
@@ -155,7 +157,6 @@ export default function Home() {
               un mensaje
             </span>
           </h2>{" "}
-          
           <GuestBookForm onNewMessage={handleNewMessage} />
         </section>
 

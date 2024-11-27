@@ -6,14 +6,19 @@ const miFuente = localFont({
   variable: '--font-mi-fuente'
 })
 
+const miFuente2 = localFont({
+  src: './fonts/DailyShine-Regular.otf',
+  variable: '--font-mi-fuente2'
+})
+
 export const metadata = {
-  title: 'Mi App con Fuente Personalizada',
-  description: 'Una aplicación Next.js con una fuente personalizada .otf',
+  title: 'Mi App con Fuentes Personalizadas',
+  description: 'Una aplicación Next.js con fuentes personalizadas .otf',
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className={miFuente.variable}>
+    <html lang="es" className={`${miFuente.variable} ${miFuente2.variable}`}>
       <body>{children}</body>
     </html>
   )
