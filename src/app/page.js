@@ -36,6 +36,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#F896D8] flex flex-col items-center justify-between">
+<div className="w-full max-w-3xl mx-auto p-4 border-8 sm:border-8 md:border-6 lg:border-4 border-[#F896D8] bg-orange-600 rounded-lg">
+
       <div className="text-center ">
         {/* Sección del reproductor de Spotify */}
         <section className="my-8 p-4 rounded-lg lg:transform lg:-translate-x-32">
@@ -69,7 +71,7 @@ export default function Home() {
           <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000]">
             CRISTINA
           </span>
-          <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#ffffff]">
+          <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000]">
             MIGUEL
           </span>
         </h1>
@@ -198,6 +200,8 @@ export default function Home() {
         </p>
         <span>Follow Me at @dannyaldana</span>
       </footer>
+      </div>
+
     </main>
   );
 }
