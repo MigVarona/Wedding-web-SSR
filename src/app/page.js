@@ -1,11 +1,12 @@
 "use client";
+import Image from "next/image"; // Importa Image de Next.js
 
 import { useEffect, useState } from "react";
 import RSVPForm from "../app/components/RsvpForm";
 import FileUpload from "../app/components/FileUpload";
 import { ChevronDown } from "lucide-react";
 import GuestBookForm from "../app/components/GuestBookForm";
-import { Headphones } from "lucide-react"; // Asegúrate de tener la librería lucide-react instalada
+import myButtonImage from "../../public/Y2K Sticker-03.png"; // Reemplaza esto con la ruta a tu imagen PNG
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
@@ -34,17 +35,22 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#ffce1e] flex flex-col items-center justify-between">
+    <main className="min-h-screen bg-[#F896D8] flex flex-col items-center justify-between">
       <div className="text-center ">
         {/* Sección del reproductor de Spotify */}
         <section className="my-8 p-4 rounded-lg lg:transform lg:-translate-x-32">
           {!showPlayer ? (
-            <button
-              onClick={handlePlayClick}
-              className="flex justify-center items-center bg-[#F5F0E8] text-[#FFB7D5] p-4 rounded-full"
-            >
-              <Headphones size={20} /> {/* Ícono de música */}
-            </button>
+            <div
+            onClick={handlePlayClick}
+            className="flex justify-start items-center cursor-pointer w-full" // Asegura que el contenedor ocupe todo el ancho
+          >
+            <Image
+              src={myButtonImage}
+              alt="Botón de reproducción"
+              width={152} // Ajusta el tamaño según tus necesidades
+              height={150} // Ajusta el tamaño según tus necesidades
+            />
+          </div>
           ) : (
             <iframe
               style={{ borderRadius: "12px" }}
@@ -55,14 +61,15 @@ export default function Home() {
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
             ></iframe>
+
           )}
         </section>
 
         <h1 className="flex flex-wrap justify-center items-center">
-          <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+          <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000]">
             CRISTINA
           </span>
-          <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+          <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000]">
             MIGUEL
           </span>
         </h1>
