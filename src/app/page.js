@@ -69,7 +69,7 @@ export default function Home() {
           <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000]">
             CRISTINA
           </span>
-          <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000]">
+          <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#ffffff]">
             MIGUEL
           </span>
         </h1>
