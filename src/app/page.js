@@ -7,6 +7,7 @@ import FileUpload from "../app/components/FileUpload";
 import { ChevronDown } from "lucide-react";
 import GuestBookForm from "../app/components/GuestBookForm";
 import myButtonImage from "../../public/Y2K Sticker-03.png"; // Reemplaza esto con la ruta a tu imagen PNG
+import Head from 'next/head';
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
@@ -35,9 +36,13 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F896D8] flex flex-col items-center justify-between">
-      <div className="w-full max-w-3xl mx-auto p-4 border-8 sm:border-8 md:border-6 lg:border-4 border-[#F896D8] bg-orange-600 rounded-lg">
-        <div className="text-center ">
+    <>
+    <Head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    </Head>
+    <main className="min-h-screen bg-[#F896D8] flex flex-col items-center justify-between overflow-x-hidden">
+    <div className="w-full max-w-[100vw] sm:max-w-3xl mx-auto p-4 border-8 sm:border-8 md:border-6 lg:border-4 border-[#F896D8] bg-orange-600 rounded-lg overflow-hidden">
+    <div className="text-center ">
           {/* Sección del reproductor de Spotify */}
           <section className="my-8 p-4 rounded-lg lg:transform lg:-translate-x-32">
             {!showPlayer ? (
@@ -111,30 +116,25 @@ export default function Home() {
             <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
           </div>
 
-          <section className="w-full max-w-2xl mx-auto my-8">
-            <h2 className="flex flex-wrap justify-center items-center">
+          <section className="w-full max-w-2xl mx-auto my-8 relative">
+            <h2 className="flex flex-wrap justify-center items-center sm:mb-[30px]">
               <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
                 Reserva
               </span>
               <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
                 tusitio
               </span>
-            </h2>{" "}
-            <div className="relative w-full max-w-2xl mx-auto">
-            <div className="relative w-full max-w-2xl mx-auto">
-            <div className="relative w-full max-w-2xl mx-auto">
-  <img
-    src="/Y2K Sticker-04.png"
-    alt="Icono decorativo"
-    className="w-[200px] h-[200px] mx-auto mt-15 mb-4 ml-40 transform rotate-[30deg] absolute top-[-50px] left-1/2 transform -translate-x-1/2"
-  />
-  <RSVPForm className="relative mt-[300px]" /> {/* Ajusta el valor de mt para mover el formulario hacia abajo */}
-</div>
-
-</div>
-
+            </h2>
+            <div className="relative mt-10 w-full max-w-2xl mx-auto">
+              <img
+                src="/Y2K Sticker-04.png"
+                alt="Icono decorativo"
+                className="w-[150px] h-[150px] absolute top-[-90px] right-[-30px] sm:top-[-50px] sm:right-[30px] transform rotate-[30deg]"
+              />
+              <RSVPForm className="mt-20" />
             </div>
           </section>
+
           <div className="flex justify-center mt-8">
             <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
           </div>
@@ -211,5 +211,6 @@ export default function Home() {
         </footer>
       </div>
     </main>
+    </>
   );
 }
