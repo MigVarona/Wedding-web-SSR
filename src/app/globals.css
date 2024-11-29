@@ -10,3 +10,12 @@
   font-family: var(--font-mi-fuente2);
 }
 
+.form-container {
+  margin-top: 4rem; /* Valor por defecto */
+}
+
+@media (max-width: 640px) {
+  .form-container {
+    margin-top: 6rem; /* Ajusta para pantallas pequeñas */
+  }
+}

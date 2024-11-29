@@ -115,25 +115,25 @@ export default function Home() {
           <div className="flex justify-center mt-8">
             <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
           </div>
-
           <section className="w-full max-w-2xl mx-auto my-8 relative">
-            <h2 className="flex flex-wrap justify-center items-center sm:mb-[30px]">
-              <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
-                Reserva
-              </span>
-              <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
-                tusitio
-              </span>
-            </h2>
-            <div className="relative mt-10 w-full max-w-2xl mx-auto">
-              <img
-                src="/Y2K Sticker-04.png"
-                alt="Icono decorativo"
-                className="w-[150px] h-[150px] absolute top-[-90px] right-[-30px] sm:top-[-50px] sm:right-[30px] transform rotate-[30deg]"
-              />
-              <RSVPForm className="mt-20" />
-            </div>
-          </section>
+  <h2 className="flex flex-wrap justify-center items-center sm:mb-[30px]">
+    <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
+      Reserva
+    </span>
+    <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
+      tusitio
+    </span>
+  </h2>
+  <div className="form-container relative w-full max-w-2xl mx-auto">
+    <img
+      src="/Y2K Sticker-04.png"
+      alt="Icono decorativo"
+      className="w-[150px] h-[150px] absolute top-[-90px] right-[-30px] sm:top-[-50px] sm:right-[30px] transform rotate-[30deg]"
+    />
+    <RSVPForm className="mt-20" />
+  </div>
+</section>
+
 
           <div className="flex justify-center mt-8">
             <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
