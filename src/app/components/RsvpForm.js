@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
@@ -14,7 +14,7 @@ export default function RSVPForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const data = { name, guests, accommodation };
 
     try {
@@ -29,6 +29,10 @@ export default function RSVPForm() {
       const result = await response.json();
       if (response.ok) {
         setStatusMessage("RSVP guardado con éxito!");
+        // Limpiar los campos del formulario
+        setName("");
+        setGuests("");
+        setAccommodation("tienda");
       } else {
         setStatusMessage("Error al guardar RSVP: " + result.message);
       }
@@ -73,7 +77,7 @@ export default function RSVPForm() {
           <RadioGroup
             value={accommodation}
             onValueChange={setAccommodation}
-            className="flex space-x-4"
+            className="flex flex-wrap gap-2 md:space-x-4"
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="tienda" id="tienda" className="h-6" />
@@ -87,18 +91,18 @@ export default function RSVPForm() {
                 id="furgoneta"
                 className="h-6"
               />
-              <Label htmlFor="colchoneta" className="text-[#2A2527]">
-                Colchoneta
+              <Label htmlFor="furgoneta" className="text-[#2A2527]">
+                Furgoneta
               </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem
-                value="Colchoneta"
-                id="Colchoneta"
+                value="colchoneta"
+                id="colchoneta"
                 className="h-6"
               />
-              <Label htmlFor="Colchoneta" className="text-[#2A2527]">
-              Colchoneta
+              <Label htmlFor="colchoneta" className="text-[#2A2527]">
+                Colchoneta
               </Label>
             </div>
           </RadioGroup>
@@ -111,7 +115,9 @@ export default function RSVPForm() {
         Me apunto!
       </Button>
 
-      {statusMessage && <p className="mt-4 text-center text-[#2A2527]">{statusMessage}</p>}
+      {statusMessage && (
+        <p className="mt-4 text-center text-[#2A2527]">{statusMessage}</p>
+      )}
     </form>
   );
 }
