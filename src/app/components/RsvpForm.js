@@ -73,40 +73,45 @@ export default function RSVPForm() {
           />
         </div>
         <div>
-          <Label className="text-[#2A2527]">Alojamiento</Label>
-          <RadioGroup
-            value={accommodation}
-            onValueChange={setAccommodation}
-            className="flex flex-wrap gap-2 md:space-x-4"
-          >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="tienda" id="tienda" className="h-6" />
-              <Label htmlFor="tienda" className="text-[#2A2527]">
-                Tienda
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem
-                value="furgoneta"
-                id="furgoneta"
-                className="h-6"
-              />
-              <Label htmlFor="furgoneta" className="text-[#2A2527]">
-                Furgoneta
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem
-                value="colchoneta"
-                id="colchoneta"
-                className="h-6"
-              />
-              <Label htmlFor="colchoneta" className="text-[#2A2527]">
-                Colchoneta
-              </Label>
-            </div>
-          </RadioGroup>
-        </div>
+  <Label className="text-[#2A2527]">Alojamiento</Label>
+  <RadioGroup
+    value={accommodation}
+    onValueChange={setAccommodation}
+    className="flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-2"
+  >
+    <div className="flex w-full sm:w-auto items-center space-x-2">
+      <RadioGroupItem
+        value="tienda"
+        id="tienda"
+        className="h-6 w-6 appearance-none border-2 border-[#2A2527] rounded-full checked:bg-[#2A2527]"
+      />
+      <Label htmlFor="tienda" className="text-[#2A2527]">
+        Tienda
+      </Label>
+    </div>
+    <div className="flex w-full sm:w-auto items-center space-x-2">
+      <RadioGroupItem
+        value="furgoneta"
+        id="furgoneta"
+        className="h-6 w-6 appearance-none border-2 border-[#2A2527] rounded-full checked:bg-[#2A2527]"
+      />
+      <Label htmlFor="furgoneta" className="text-[#2A2527]">
+        Furgoneta
+      </Label>
+    </div>
+    <div className="flex w-full sm:w-auto items-center space-x-2">
+      <RadioGroupItem
+        value="colchoneta"
+        id="colchoneta"
+        className="h-6 w-6 appearance-none border-2 border-[#2A2527] rounded-full checked:bg-[#2A2527]"
+      />
+      <Label htmlFor="colchoneta" className="text-[#2A2527]">
+        Colchoneta
+      </Label>
+    </div>
+  </RadioGroup>
+</div>
+
       </div>
       <Button
         type="submit"

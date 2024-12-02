@@ -19,3 +19,8 @@
     margin-top: 6rem; /* Ajusta para pantallas pequeñas */
   }
 }
+#tienda {
+  margin: 0;
+  padding: 0;
+  margin-left: 15px;
+}
