@@ -40,7 +40,7 @@ export default function Home() {
         />
       </Head>
       <main className="min-h-screen bg-gradient-to-b from-[#F896D8] to-[#FFB7D5] flex flex-col items-center justify-between overflow-x-hidden">
-        <div className="w-full max-w-[100vw] sm:max-w-4xl mx-auto p-6 sm:p-8 border-8 sm:border-8 md:border-6 lg:border-4 border-[#F896D8] bg-orange-600 rounded-2xl overflow-hidden shadow-2xl">
+        <div className="w-full max-w-[100vw] sm:max-w-4xl mx-auto p-6 sm:p-8 border-8 sm:border-8 md:border-6 lg:border-4 border-[#F896D8] bg-rose-400 rounded-2xl overflow-hidden shadow-2xl">
           <div className="text-center space-y-12">
             <section className="my-8 p-4 rounded-lg bg-[#FFB7D5] shadow-inner">
               {!showPlayer ? (
