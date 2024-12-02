@@ -1,216 +1,241 @@
 "use client";
-import Image from "next/image"; // Importa Image de Next.js
-
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import RSVPForm from "../app/components/RsvpForm";
 import FileUpload from "../app/components/FileUpload";
 import { ChevronDown } from "lucide-react";
 import GuestBookForm from "../app/components/GuestBookForm";
-import myButtonImage from "../../public/Y2K Sticker-03.png"; // Reemplaza esto con la ruta a tu imagen PNG
-import Head from 'next/head';
+import myButtonImage from "../../public/Y2K Sticker-03.png";
+import Head from "next/head";
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
   const [showPlayer, setShowPlayer] = useState(false);
 
-  // Función para obtener los mensajes del libro de visitas
   const fetchMessages = async () => {
     const response = await fetch("/api/guestbook");
     const data = await response.json();
     setMessages(data);
   };
 
-  // Usar useEffect para cargar los mensajes al montar el componente
   useEffect(() => {
     fetchMessages();
   }, []);
 
-  // Función para actualizar los mensajes después de enviar uno nuevo
   const handleNewMessage = (newMessage) => {
     setMessages((prevMessages) => [newMessage, ...prevMessages]);
   };
 
-  // Función para mostrar el reproductor de Spotify
   const handlePlayClick = () => {
-    setShowPlayer(true); // Muestra el iframe cuando se hace clic en el ícono
+    setShowPlayer(true);
   };
 
   return (
     <>
-    <Head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    </Head>
-    <main className="min-h-screen bg-[#F896D8] flex flex-col items-center justify-between overflow-x-hidden">
-    <div className="w-full max-w-[100vw] sm:max-w-3xl mx-auto p-4 border-8 sm:border-8 md:border-6 lg:border-4 border-[#F896D8] bg-orange-600 rounded-lg overflow-hidden">
-    <div className="text-center ">
-          {/* Sección del reproductor de Spotify */}
-          <section className="my-8 p-4 rounded-lg lg:transform lg:-translate-x-32">
-            {!showPlayer ? (
-              <div
-                onClick={handlePlayClick}
-                className="flex justify-start items-center cursor-pointer w-full" // Asegura que el contenedor ocupe todo el ancho
-              >
-                <Image
-                  src={myButtonImage}
-                  alt="Botón de reproducción"
-                  width={152} // Ajusta el tamaño según tus necesidades
-                  height={150} // Ajusta el tamaño según tus necesidades
-                />
-              </div>
-            ) : (
-              <iframe
-                style={{ borderRadius: "12px" }}
-                src="https://open.spotify.com/embed/playlist/2fOGsYH2vNUrVBfOB8P5q0?utm_source=generator"
-                width="75%"
-                height="152"
-                frameBorder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-              ></iframe>
-            )}
-          </section>
-
-          <h1 className="flex flex-wrap justify-center items-center">
-            <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000]">
-              CRISTINA
-            </span>
-            <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000]">
-              MIGUEL
-            </span>
-          </h1>
-          <img
-            src="/y2k Asset by Annorastd-19.svg"
-            alt="Icono decorativo"
-            className="w-[900px] h-[100px] mx-auto mt-4 text-slate-50"
-          />
-          <h1 className="flex mt-8 flex-wrap justify-center items-center">
-            <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#F5F0E8] mb-2 sm:mb-0">
-              Turkashila
-            </span>
-            <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
-              Casavieja
-            </span>
-          </h1>
-
-          <h1 className="flex flex-wrap justify-center items-center">
-            <span className="mi-fuente-personalizada text-2xl sm:text-2xl md:text-5xl lg:text-5xl xl:text-[2rem] font-bold leading-none tracking-wide text-[#F5F0E8] mt-4">
-              20/09
-            </span>
-          </h1>
-
-          <div className="flex justify-center mt-8">
-            <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
-          </div>
-
-          <div className="flex justify-center items-center mt-30">
-            <iframe
-              src="https://giphy.com/embed/VKQBveX0MZu1PXRFE8"
-              width="300"
-              height="300"
-              frameBorder="0"
-              className="giphy-embed"
-              allowFullScreen
-            ></iframe>
-          </div>
-          <div className="flex justify-center mt-8">
-            <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
-          </div>
-          <section className="w-full max-w-2xl mx-auto my-8 relative">
-  <h2 className="flex flex-wrap justify-center items-center sm:mb-[30px]">
-    <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
-      Reserva
-    </span>
-    <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
-      tusitio
-    </span>
-  </h2>
-  <div className="form-container relative w-full max-w-2xl mx-auto">
-    <img
-      src="/Y2K Sticker-04.png"
-      alt="Icono decorativo"
-      className="w-[150px] h-[150px] absolute top-[-90px] right-[-30px] sm:top-[-50px] sm:right-[30px] transform rotate-[30deg]"
-    />
-    <RSVPForm className="mt-20" />
-  </div>
-</section>
-
-
-          <div className="flex justify-center mt-8">
-            <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
-          </div>
-
-          <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-            <h2 className="flex mb-20 flex-wrap justify-center items-center">
-              <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
-                Sube
-              </span>
-              <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
-                tusfotos
-              </span>
-            </h2>{" "}
-            <FileUpload />
-          </section>
-          <div className="flex justify-center items-center mt-30">
-            <iframe
-              src="https://giphy.com/embed/IUEG0DmJxgRWM"
-              width="300"
-              height="300"
-              frameBorder="0"
-              className="giphy-embed"
-              allowFullScreen
-            ></iframe>
-          </div>
-
-          {/* Sección para dejar mensajes */}
-          <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-            <h2 className="flex mb-20 flex-wrap justify-center items-center">
-              <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
-                DejaTu
-              </span>
-              <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-8xl lg:text-7xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
-                mensaje
-              </span>
-            </h2>{" "}
-            <GuestBookForm onNewMessage={handleNewMessage} />
-          </section>
-
-          {/* Sección para mostrar los mensajes */}
-          <section className="w-full max-w-2xl mx-auto mt-20 my-8">
-            <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">
-              Mensajes Recibidos
-            </h2>
-            <div className="space-y-4">
-              {messages.length > 0 ? (
-                messages.map((message) => (
-                  <div
-                    key={message._id}
-                    className="bg-[#F5F0E8] p-4 rounded-lg"
-                  >
-                    <p className="font-bold text-lg">{message.name}</p>
-                    <p>{message.message}</p>
-                    <p className="text-sm text-gray-500">
-                      {new Date(message.timestamp).toLocaleString()}
-                    </p>
-                  </div>
-                ))
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+        />
+      </Head>
+      <main className="min-h-screen bg-gradient-to-b from-[#F896D8] to-[#FFB7D5] flex flex-col items-center justify-between overflow-x-hidden">
+        <div className="w-full max-w-[100vw] sm:max-w-4xl mx-auto p-6 sm:p-8 border-8 sm:border-8 md:border-6 lg:border-4 border-[#F896D8] bg-orange-600 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="text-center space-y-12">
+            <section className="my-8 p-4 rounded-lg bg-[#FFB7D5] shadow-inner">
+              {!showPlayer ? (
+                <div
+                  onClick={handlePlayClick}
+                  className="flex justify-center items-center cursor-pointer w-full transition-transform hover:scale-105"
+                >
+                  <Image
+                    src={myButtonImage}
+                    alt="Botón de reproducción"
+                    width={152}
+                    height={150}
+                    className="filter drop-shadow-lg"
+                  />
+                </div>
               ) : (
-                <p>No hay mensajes aún.</p>
+                <iframe
+                  style={{ borderRadius: "12px" }}
+                  src="https://open.spotify.com/embed/playlist/2fOGsYH2vNUrVBfOB8P5q0?utm_source=generator"
+                  width="100%"
+                  height="152"
+                  frameBorder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="shadow-lg"
+                ></iframe>
               )}
-            </div>
-          </section>
-        </div>
+            </section>
 
-        <footer className="w-full flex justify-between items-end text-[#F5F0E8] text-xs sm:text-sm">
-          <p className="max-w-2xl">
-            A versatile and modern typeface characterized by its narrow,
-            streamlined letterforms. This font is ideal for space-efficient
-            design, offering a clean and elegant aesthetic without compromising
-            readability.
-          </p>
-          <span>Follow Me at @dannyaldana</span>
-        </footer>
-      </div>
-    </main>
+            <h1 className="flex flex-wrap justify-center items-center space-x-4">
+              <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000] drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)]">
+                CRISTINA
+              </span>
+              <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000] drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)]">
+                MIGUEL
+              </span>
+            </h1>
+            <img
+              src="/y2k Asset by Annorastd-19.svg"
+              alt="Icono decorativo"
+              className="w-full max-w-[900px] h-auto mx-auto mt-4 filter drop-shadow-lg"
+            />
+            <h2 className="flex mt-8 flex-wrap justify-center items-center space-x-4">
+              <span className="mi-fuente-personalizada text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#F5F0E8] mb-2 sm:mb-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                Turkashila
+              </span>
+              <span className="mi-fuente-personalizada text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                Casavieja
+              </span>
+            </h2>
+
+            <h3 className="flex flex-wrap justify-center items-center">
+              <span className="mi-fuente-personalizada text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[3rem] font-bold leading-none tracking-wide text-[#F5F0E8] mt-4 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                20/09
+              </span>
+            </h3>
+
+            <div className="flex justify-center mt-8">
+              <ChevronDown
+                size={120}
+                className="text-[#F5F0E8] animate-bounce filter drop-shadow-lg"
+              />
+            </div>
+
+            <div className="flex justify-center items-center mt-12">
+              <iframe
+                src="https://giphy.com/embed/VKQBveX0MZu1PXRFE8"
+                width="300"
+                height="300"
+                frameBorder="0"
+                className="giphy-embed rounded-xl shadow-lg"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <div className="flex justify-center mt-8">
+              <ChevronDown
+                size={120}
+                className="text-[#F5F0E8] animate-bounce filter drop-shadow-lg"
+              />
+            </div>
+
+            <section className="w-full max-w-2xl mx-auto relative bg-[#FFB7D5] p-8 rounded-xl shadow-lg">
+              <h2 className="flex flex-wrap justify-center items-center text-center">
+                <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                  Reserva
+                </span>
+                <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F896D8] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                  tusitio
+                </span>
+              </h2>
+              <div className="form-container relative w-full max-w-2xl">
+                <div className="flex justify-center items-center -mt-10 sm:-mt-2 md:mt-0">
+                  <img
+                    src="/Y2K Sticker-04.png"
+                    alt="Icono decorativo"
+                    className="w-[200px] h-[200px] filter drop-shadow-lg"
+                  />
+                </div>
+                <RSVPForm className="mt-8" />
+              </div>
+            </section>
+
+            <div className="flex justify-center mt-8">
+              <ChevronDown
+                size={120}
+                className="text-[#F5F0E8] animate-bounce filter drop-shadow-lg"
+              />
+            </div>
+
+            <section className="w-full max-w-2xl mx-auto mt-20 my-12 bg-[#FFB7D5] p-8 rounded-xl shadow-lg">
+              <h2 className="flex mb-12 flex-wrap justify-center items-center">
+                <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                  Sube
+                </span>
+                <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F896D8] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                  tusfotos
+                </span>
+              </h2>
+              <div className="flex justify-center items-center mt-8">
+                <iframe
+                  src="https://giphy.com/embed/IUEG0DmJxgRWM"
+                  width="100%"
+                  height="300"
+                  frameBorder="0"
+                  className="giphy-embed max-w-[300px]"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <FileUpload />
+              
+            </section>
+
+            <section className="w-full max-w-2xl mx-auto mt-20 my-12 bg-[#FFB7D5] p-8 rounded-xl shadow-lg">
+              <h2 className="flex mb-12 flex-wrap justify-center items-center">
+                <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                  DejaTu
+                </span>
+                <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F896D8] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                  mensaje
+                </span>
+              </h2>
+              <div className="form-container relative w-full max-w-2xl">
+                <div className="flex justify-center items-center -mt-10 sm:-mt-2 md:mt-0">
+                  <img
+                    src="/Y2K Sticker-01.png"
+                    alt="Icono decorativo"
+                    className="w-[200px] h-[200px] filter drop-shadow-lg"
+                  />
+                </div>
+              </div>
+              <GuestBookForm onNewMessage={handleNewMessage} />
+            </section>
+
+            <section className="w-full max-w-2xl mx-auto mt-20 my-12 bg-[#FFB7D5] p-8 rounded-xl shadow-lg">
+              <h2 className="text-4xl font-bold mb-8 text-[#F5F0E8] text-center drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                Mensajes Recibidos
+              </h2>
+              <div className="space-y-4">
+                {messages.length > 0 ? (
+                  messages.map((message) => (
+                    <div
+                      key={message._id}
+                      className="bg-[#F5F0E8] p-4 rounded-lg shadow-md"
+                    >
+                      <p className="font-bold text-lg text-[#F896D8]">
+                        {message.name}
+                      </p>
+                      <p className="text-gray-700">{message.message}</p>
+                      <p className="text-sm text-gray-500 mt-2">
+                        {new Date(message.timestamp).toLocaleString()}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-center text-[#F5F0E8]">
+                    No hay mensajes aún.
+                  </p>
+                )}
+              </div>
+            </section>
+          </div>
+
+          <footer className="w-full flex flex-col sm:flex-row justify-between items-center sm:items-end text-[#F5F0E8] text-xs sm:text-sm mt-12 space-y-4 sm:space-y-0">
+            <p className="max-w-2xl text-center sm:text-left">
+              A versatile and modern typeface characterized by its narrow,
+              streamlined letterforms. This font is ideal for space-efficient
+              design, offering a clean and elegant aesthetic without
+              compromising readability.
+            </p>
+            <span className="text-center sm:text-right">
+              Follow Me at @dannyaldana
+            </span>
+          </footer>
+        </div>
+      </main>
     </>
   );
 }
