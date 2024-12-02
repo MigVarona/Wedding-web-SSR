@@ -3,10 +3,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import RSVPForm from "../app/components/RsvpForm";
 import FileUpload from "../app/components/FileUpload";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MapPin } from 'lucide-react';
 import GuestBookForm from "../app/components/GuestBookForm";
 import myButtonImage from "../../public/Y2K Sticker-03.png";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
@@ -96,6 +97,16 @@ export default function Home() {
                 20/09
               </span>
             </h3>
+            <Link 
+              href="https://tunkashila.com/#situacion" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-6 py-3 mt-4 text-lg font-medium text-white bg-[#F896D8] rounded-md hover:bg-[#FFB7D5] transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg"
+            >
+              <MapPin className="w-5 h-5 mr-2" />
+              Cómo llegar
+            </Link>
+
 
             <div className="flex justify-center mt-8">
               <ChevronDown
