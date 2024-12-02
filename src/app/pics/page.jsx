@@ -43,8 +43,8 @@ export default function PhotosPage() {
   };
 
   return (
-    <div className="px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">Fotos del Grupo</h1>
+    <div className="px-4 py-8 bg-black">
+      <h1 className="mi-fuente-personalizada2 text-7xl font-bold mb-6 text-center text-white">Cristina & Miguel</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {photos.length > 0 ? (
           photos.map((photo) => (
@@ -66,10 +66,10 @@ export default function PhotosPage() {
       </div>
 
       {selectedPhoto && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
-          <div className="relative bg-white p-4 rounded-lg max-w-4xl">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50 transition-opacity duration-300">
+          <div className="relative bg-black p-6 rounded-lg shadow-xl max-w-4xl overflow-hidden transform transition-transform scale-100 hover:scale-105">
             <button
-              className="absolute top-2 right-2 text-black font-bold"
+              className="absolute top-4 right-4 text-white hover:text-gray-400 text-xl font-bold"
               onClick={closeModal}
             >
               ×
