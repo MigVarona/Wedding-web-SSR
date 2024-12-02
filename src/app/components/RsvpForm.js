@@ -87,8 +87,18 @@ export default function RSVPForm() {
                 id="furgoneta"
                 className="h-6"
               />
-              <Label htmlFor="furgoneta" className="text-[#2A2527]">
-                Furgoneta
+              <Label htmlFor="colchoneta" className="text-[#2A2527]">
+                Colchoneta
+              </Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem
+                value="Colchoneta"
+                id="Colchoneta"
+                className="h-6"
+              />
+              <Label htmlFor="Colchoneta" className="text-[#2A2527]">
+              Colchoneta
               </Label>
             </div>
           </RadioGroup>

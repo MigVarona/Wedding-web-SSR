@@ -101,7 +101,7 @@ export default function Home() {
               href="https://tunkashila.com/#situacion" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="mi-fuente-personalizada inline-flex items-center justify-center px-6 py-3 mt-4 text-lg font-medium text-white bg-[#F896D8] rounded-md hover:bg-[#FFB7D5] transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg"
+              className="mi-fuente-personalizada inline-flex items-center justify-center px-6 py-3 mt-4 text-lg  text-white bg-[#F896D8] rounded-md hover:bg-[#FFB7D5] transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg"
             >
               <MapPin className=" w-5 h-5 mr-2" />
               Cómo llegar
