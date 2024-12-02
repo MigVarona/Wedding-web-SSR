@@ -44,7 +44,7 @@ export default function RSVPForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-md mx-auto bg-[#FFB7D5] p-6 rounded-lg shadow-lg"
+      className="w-full max-w-md mx-auto bg-[#FFB7D5] p-6 rounded-lg "
     >
       <div className="space-y-4">
         <div>
