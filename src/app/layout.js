@@ -7,7 +7,7 @@ const miFuente = localFont({
 })
 
 const miFuente2 = localFont({
-  src: './fonts/DailyShine-Regular.otf',
+  src: './fonts/SundropsDisplay.ttf',
   variable: '--font-mi-fuente2'
 })
 

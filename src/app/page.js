@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import RSVPForm from "../app/components/RsvpForm";
 import FileUpload from "../app/components/FileUpload";
-import { ChevronDown, MapPin } from 'lucide-react';
+import { ChevronDown, MapPin } from "lucide-react";
 import GuestBookForm from "../app/components/GuestBookForm";
 import myButtonImage from "../../public/Y2K Sticker-03.png";
 import Head from "next/head";
@@ -39,8 +39,8 @@ export default function Home() {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
         />
       </Head>
-      <main className="min-h-screen bg-gradient-to-b from-[#F896D8] to-[#FFB7D5] flex flex-col items-center justify-between overflow-x-hidden">
-        <div className="w-full max-w-[100vw] sm:max-w-4xl mx-auto p-6 sm:p-8 border-8 sm:border-8 md:border-6 lg:border-4 border-[#F896D8] bg-rose-400 rounded-2xl overflow-hidden shadow-2xl">
+      <main className="min-h-screen bg-[#05B6CB]    flex flex-col items-center justify-between overflow-x-hidden">
+        <div className="w-full max-w-[100vw] sm:max-w-4xl mx-auto p-6 sm:p-8 border-8 sm:border-8 md:border-6 lg:border-4 border-[#05B6CB] bg-[#FF90C0] rounded-2xl overflow-hidden shadow-2xl">
           <div className="text-center space-y-12">
             <section className="my-8 p-4 rounded-lg bg-[#FFB7D5] shadow-inner">
               {!showPlayer ? (
@@ -69,15 +69,21 @@ export default function Home() {
                 ></iframe>
               )}
             </section>
-
             <h1 className="flex flex-wrap justify-center items-center space-x-4">
-              <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000] drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)]">
-                CRISTINA
+              <span
+                className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] leading-none tracking-wide text-white"
+                style={{ textShadow: "4px 4px 0px black" }}
+              >
+                Cristina
               </span>
-              <span className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#000000] drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)]">
-                MIGUEL
+              <span
+                className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] leading-none tracking-wide text-white"
+                style={{ textShadow: "4px 4px 0px black" }}
+              >
+                Miguel
               </span>
             </h1>
+
             <img
               src="/y2k Asset by Annorastd-19.svg"
               alt="Icono decorativo"
@@ -97,16 +103,15 @@ export default function Home() {
                 20/09
               </span>
             </h3>
-            <Link 
-              href="https://tunkashila.com/#situacion" 
-              target="_blank" 
+            <Link
+              href="https://tunkashila.com/#situacion"
+              target="_blank"
               rel="noopener noreferrer"
               className="mi-fuente-personalizada inline-flex items-center justify-center px-6 py-3 mt-4 text-lg  text-white bg-[#F896D8] rounded-md hover:bg-[#FFB7D5] transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg"
             >
               <MapPin className=" w-5 h-5 mr-2" />
               Cómo llegar
             </Link>
-
 
             <div className="flex justify-center mt-8">
               <ChevronDown
@@ -181,7 +186,6 @@ export default function Home() {
                 ></iframe>
               </div>
               <FileUpload />
-              
             </section>
 
             <section className="w-full max-w-2xl mx-auto mt-20 my-12 bg-[#FFB7D5] p-8 rounded-xl shadow-lg">
