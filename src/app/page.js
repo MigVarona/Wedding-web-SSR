@@ -87,10 +87,10 @@ export default function Home() {
             <img
               src="/y2k Asset by Annorastd-19.svg"
               alt="Icono decorativo"
-              className="w-full max-w-[900px] h-auto mx-auto mt-4 filter drop-shadow-lg"
+              className="w-full max-w-[900px] h-auto mx-auto mt-4  drop-shadow-lg"
             />
             <h2 className="flex mt-8 flex-wrap justify-center items-center space-x-4">
-              <span className="mi-fuente-personalizada text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#F5F0E8] mb-2 sm:mb-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+              <span className="mi-fuente-personalizada text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-white mb-2 sm:mb-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
                 Turkashila
               </span>
               <span className="mi-fuente-personalizada text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
@@ -99,7 +99,7 @@ export default function Home() {
             </h2>
 
             <h3 className="flex flex-wrap justify-center items-center">
-              <span className="mi-fuente-personalizada text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[3rem] font-bold leading-none tracking-wide text-[#F5F0E8] mt-4 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+              <span className="mi-fuente-personalizada text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[3rem] font-bold leading-none tracking-wide text-white mt-4 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
                 20/09
               </span>
             </h3>
