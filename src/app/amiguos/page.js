@@ -110,6 +110,9 @@ export default function Home() {
                   <p className="text-[#2A2527]">
                     Alojamiento: {rsvp.accommodation}
                   </p>
+                  <p className="text-[#2A2527]">
+                    Noches: {rsvp.nights}
+                  </p>
                   {/* Botón para eliminar el RSVP */}
                   <button
                     onClick={() => deleteRsvp(rsvp._id)}

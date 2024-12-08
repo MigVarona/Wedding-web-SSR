@@ -4,7 +4,7 @@ const client = new MongoClient(process.env.MONGODB_URI);
 
 // Función para manejar la solicitud POST
 export async function POST(req) {
-  const { name, guests, accommodation } = await req.json();
+  const { name, guests, accommodation, nights } = await req.json();
 
   try {
     await client.connect();
@@ -15,6 +15,7 @@ export async function POST(req) {
       name,
       guests,
       accommodation,
+      nights,
       createdAt: new Date(),
     };
 

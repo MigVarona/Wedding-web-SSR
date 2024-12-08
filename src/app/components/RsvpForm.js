@@ -15,7 +15,7 @@ export default function RSVPForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = { name, guests, accommodation };
+    const data = { name, guests, accommodation, nights };
 
     try {
       const response = await fetch("/api/rsvp", {
@@ -32,6 +32,7 @@ export default function RSVPForm() {
         // Limpiar los campos del formulario
         setName("");
         setGuests("");
+        setNights("1"); // Restablecer a la opción predeterminada
         setAccommodation("tienda");
       } else {
         setStatusMessage("Error al guardar RSVP: " + result.message);
@@ -40,6 +41,8 @@ export default function RSVPForm() {
       setStatusMessage("Error al enviar la solicitud: " + error.message);
     }
   };
+
+  const [nights, setNights] = useState("1");
 
   return (
     <form
@@ -73,45 +76,58 @@ export default function RSVPForm() {
           />
         </div>
         <div>
-  <Label className="text-[#2A2527]">Alojamiento</Label>
-  <RadioGroup
-    value={accommodation}
-    onValueChange={setAccommodation}
-    className="flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-2"
-  >
-    <div className="flex w-full sm:w-auto items-center space-x-2">
-      <RadioGroupItem
-        value="tienda"
-        id="tienda"
-        className="h-6 w-6 appearance-none border-2 border-[#2A2527] rounded-full checked:bg-[#2A2527]"
-      />
-      <Label htmlFor="tienda" className="text-[#2A2527]">
-        Tienda
-      </Label>
-    </div>
-    <div className="flex w-full sm:w-auto items-center space-x-2">
-      <RadioGroupItem
-        value="furgoneta"
-        id="furgoneta"
-        className="h-6 w-6 appearance-none border-2 border-[#2A2527] rounded-full checked:bg-[#2A2527]"
-      />
-      <Label htmlFor="furgoneta" className="text-[#2A2527]">
-        Furgoneta
-      </Label>
-    </div>
-    <div className="flex w-full sm:w-auto items-center space-x-2">
-      <RadioGroupItem
-        value="colchoneta"
-        id="colchoneta"
-        className="h-6 w-6 appearance-none border-2 border-[#2A2527] rounded-full checked:bg-[#2A2527]"
-      />
-      <Label htmlFor="colchoneta" className="text-[#2A2527]">
-        Colchoneta
-      </Label>
-    </div>
-  </RadioGroup>
-</div>
-
+          <Label className="text-[#2A2527]">Alojamiento</Label>
+          <RadioGroup
+            value={accommodation}
+            onValueChange={setAccommodation}
+            className="flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-2"
+          >
+            <div className="flex w-full sm:w-auto items-center space-x-2">
+              <RadioGroupItem
+                value="tienda"
+                id="tienda"
+                className="h-6 w-6 appearance-none border-2 border-[#2A2527] rounded-full checked:bg-[#2A2527]"
+              />
+              <Label htmlFor="tienda" className="text-[#2A2527]">
+                Tienda
+              </Label>
+            </div>
+            <div className="flex w-full sm:w-auto items-center space-x-2">
+              <RadioGroupItem
+                value="furgoneta"
+                id="furgoneta"
+                className="h-6 w-6 appearance-none border-2 border-[#2A2527] rounded-full checked:bg-[#2A2527]"
+              />
+              <Label htmlFor="furgoneta" className="text-[#2A2527]">
+                Furgoneta
+              </Label>
+            </div>
+            <div className="flex w-full sm:w-auto items-center space-x-2">
+              <RadioGroupItem
+                value="colchoneta"
+                id="colchoneta"
+                className="h-6 w-6 appearance-none border-2 border-[#2A2527] rounded-full checked:bg-[#2A2527]"
+              />
+              <Label htmlFor="colchoneta" className="text-[#2A2527]">
+                Colchoneta
+              </Label>
+            </div>
+          </RadioGroup>
+        </div>
+        <div>
+          <Label htmlFor="nights" className="text-[#2A2527]">
+            Número de noches
+          </Label>
+          <select
+            id="nights"
+            value={nights}
+            onChange={(e) => setNights(e.target.value)}
+            className="w-full bg-[#F5F0E8] text-[#2A2527] border border-[#2A2527] rounded-md p-2"
+          >
+            <option value="1">Una noche</option>
+            <option value="2">Dos noches</option>
+          </select>
+        </div>
       </div>
       <Button
         type="submit"
