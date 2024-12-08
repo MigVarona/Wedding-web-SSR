@@ -100,7 +100,6 @@ export default function Home() {
 
         {/* Mostrar los RSVPs aquí */}
         <section className="w-full max-w-2xl mx-auto mt-8">
-         
           {loading ? (
             <p className="text-[#F5F0E8]">Cargando...</p>
           ) : (

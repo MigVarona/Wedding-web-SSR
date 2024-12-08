@@ -44,7 +44,7 @@ export default function PhotosPage() {
 
   return (
     <div className="px-4 py-8 bg-black">
-      <h1 className="mi-fuente-personalizada2 text-7xl font-bold mb-6 text-center text-white">Cristina & Miguel</h1>
+      <h1 className="mi-fuente-personalizada2 text-7xl mb-6 text-center text-white">Cristina & Miguel</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {photos.length > 0 ? (
           photos.map((photo) => (

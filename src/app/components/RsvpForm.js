@@ -11,6 +11,7 @@ export default function RSVPForm() {
   const [guests, setGuests] = useState("");
   const [accommodation, setAccommodation] = useState("tienda");
   const [statusMessage, setStatusMessage] = useState("");
+  const [showInfo, setShowInfo] = useState(false); // Estado para controlar la ventana emergente
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -109,25 +110,64 @@ export default function RSVPForm() {
                 className="h-6 w-6 appearance-none border-2 border-[#2A2527] rounded-full checked:bg-[#2A2527]"
               />
               <Label htmlFor="colchoneta" className="text-[#2A2527]">
-                Colchoneta
+                Colchon hinchable
               </Label>
             </div>
           </RadioGroup>
         </div>
         <div>
-          <Label htmlFor="nights" className="text-[#2A2527]">
-            Número de noches
-          </Label>
-          <select
-            id="nights"
-            value={nights}
-            onChange={(e) => setNights(e.target.value)}
-            className="w-full bg-[#F5F0E8] text-[#2A2527] border border-[#2A2527] rounded-md p-2"
+      <div className="flex items-center mb-2">
+        <button
+          type="button"
+          className="mr-2 flex items-center justify-center w-6 h-6 rounded-full focus:outline-none hover:shadow-md"
+          onClick={() => setShowInfo(!showInfo)}
+          aria-label="Información sobre el número de noches"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-10 h- text-[#2A2527]"
+            aria-hidden="true"
           >
-            <option value="1">Una noche</option>
-            <option value="2">Dos noches</option>
-          </select>
+            <path
+              d="M12 2a10 10 0 100 20 10 10 0 000-20zm.75 15h-1.5v-6h1.5v6zm0-8h-1.5V7h1.5v2z"
+            />
+          </svg>
+        </button>
+        <Label htmlFor="nights" className="text-[#2A2527]">
+          Número de noches
+        </Label>
+      </div>
+
+      <select
+        id="nights"
+        value={nights}
+        onChange={(e) => setNights(e.target.value)}
+        className="w-full bg-[#F5F0E8] text-[#2A2527] border border-[#2A2527] rounded-md p-2"
+      >
+        <option value="1">Una noche</option>
+        <option value="2">Dos noches</option>
+      </select>
+
+      {showInfo && (
+        <div
+          className="mt-2 p-4 bg-[#F5F0E8] text-[#2A2527] border border-[#2A2527] rounded-md shadow-md"
+          role="alert"
+        >
+          <p>
+          La noche del sábado corre por nuestra cuenta!, si quieres quedarte con nosotros hasta el lunes son 20€ / persona
+          </p>
+          <button
+            type="button"
+            className="mt-2 text-sm text-blue-500 underline"
+            onClick={() => setShowInfo(false)}
+          >
+            Cerrar
+          </button>
         </div>
+      )}
+    </div>
       </div>
       <Button
         type="submit"
