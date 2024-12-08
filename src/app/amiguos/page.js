@@ -58,15 +58,21 @@ export default function Home() {
   const accommodationSummary = sumGuestsByAccommodation();
 
   return (
-    <main className="min-h-screen bg-[#ffce1e] px-4 py-8 flex flex-col items-center justify-between">
-      <div className="text-center mt-20">
+    <main className="min-h-screen bg-[#05B6CB]    flex flex-col items-center justify-between overflow-x-hidden">
+      <div className="w-full max-w-[100vw] sm:max-w-4xl mx-auto p-6 sm:p-8 border-8 sm:border-8 md:border-6 lg:border-4 border-[#05B6CB] bg-[#FF90C0] rounded-2xl overflow-hidden shadow-2xl">
         <Link href="/" passHref>
-          <h1 className="flex flex-wrap justify-center items-center">
-            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
-              CRISTINA
+          <h1 className="flex flex-wrap justify-center items-center space-x-4">
+            <span
+              className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] leading-none tracking-wide text-white"
+              style={{ textShadow: "4px 4px 0px black" }}
+            >
+              Cristina
             </span>
-            <span className="mi-fuente-personalizada text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
-              MIGUEL
+            <span
+              className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] leading-none tracking-wide text-white"
+              style={{ textShadow: "4px 4px 0px black" }}
+            >
+              Miguel
             </span>
           </h1>
         </Link>
@@ -77,10 +83,10 @@ export default function Home() {
         />
         <h1 className="flex mt-8 flex-wrap justify-center items-center">
           <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
-            Turkashila
+            LISTADE
           </span>
           <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
-            Casavieja
+            INVITADOS
           </span>
         </h1>
         <h1 className="flex flex-wrap justify-center items-center">
@@ -94,9 +100,7 @@ export default function Home() {
 
         {/* Mostrar los RSVPs aquí */}
         <section className="w-full max-w-2xl mx-auto mt-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">
-            Lista de RSVPs
-          </h2>
+         
           {loading ? (
             <p className="text-[#F5F0E8]">Cargando...</p>
           ) : (
@@ -110,9 +114,7 @@ export default function Home() {
                   <p className="text-[#2A2527]">
                     Alojamiento: {rsvp.accommodation}
                   </p>
-                  <p className="text-[#2A2527]">
-                    Noches: {rsvp.nights}
-                  </p>
+                  <p className="text-[#2A2527]">Noches: {rsvp.nights}</p>
                   {/* Botón para eliminar el RSVP */}
                   <button
                     onClick={() => deleteRsvp(rsvp._id)}
