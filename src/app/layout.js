@@ -17,8 +17,8 @@ const miFuente2 = localFont({
 
 
 export const metadata = {
-  title: 'Mi App con Fuentes Personalizadas',
-  description: 'Una aplicación Next.js con fuentes personalizadas .otf',
+  title: 'Cris y Miguel ',
+  description: 'Tunkashila 21/09',
 }
 
 export default function RootLayout({ children }) {

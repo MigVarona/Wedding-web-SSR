@@ -91,7 +91,7 @@ export default function Home() {
             />
             <h2 className="flex mt-8 flex-wrap justify-center items-center space-x-4">
               <span className="mi-fuente-personalizada text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-white mb-2 sm:mb-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
-                Turkashila
+                Tunkashila
               </span>
               <span className="mi-fuente-personalizada text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
                 Casavieja
