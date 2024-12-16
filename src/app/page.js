@@ -239,16 +239,12 @@ export default function Home() {
           </div>
 
           <footer className="w-full flex flex-col sm:flex-row justify-between items-center sm:items-end text-[#F5F0E8] text-xs sm:text-sm mt-12 space-y-4 sm:space-y-0">
-            <p className="max-w-2xl text-center sm:text-left">
-              A versatile and modern typeface characterized by its narrow,
-              streamlined letterforms. This font is ideal for space-efficient
-              design, offering a clean and elegant aesthetic without
-              compromising readability.
-            </p>
-            <span className="text-center sm:text-right">
-              Follow Me at @dannyaldana
-            </span>
-          </footer>
+  <p className="max-w-2xl text-center sm:text-left">
+     development by <a href="https://miguelvarona.dev" className="text-[#F5F0E8] hover:underline">Miguel Varona</a>. All rights reserved.
+  </p>
+ 
+</footer>
+
         </div>
       </main>
     </>
