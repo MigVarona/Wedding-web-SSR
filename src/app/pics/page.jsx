@@ -2,21 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; // Importa los íconos
 
 const PINATA_GATEWAY = "blue-used-tarsier-623.mypinata.cloud";
 
 export default function PhotosPage() {
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchPhotos() {
       try {
-        const response = await fetch("/api/photos", {
-          method: "GET",
-        });
+        const response = await fetch("/api/photos", { method: "GET" });
         if (!response.ok) {
           const errorData = await response.text();
           throw new Error(`Error al obtener las fotos: ${errorData}`);
@@ -45,12 +45,12 @@ export default function PhotosPage() {
     );
   }
 
-  const openModal = (photo) => {
-    setSelectedPhoto(photo);
+  const openModal = (index) => {
+    setSelectedIndex(index);
   };
 
   const closeModal = () => {
-    setSelectedPhoto(null);
+    setSelectedIndex(null);
   };
 
   const handleClickOutside = (e) => {
@@ -59,11 +59,23 @@ export default function PhotosPage() {
     }
   };
 
+  const showNextPhoto = () => {
+    setSelectedIndex((prevIndex) => (prevIndex + 1) % photos.length);
+  };
+
+  const showPreviousPhoto = () => {
+    setSelectedIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+  };
+
+  const selectedPhoto = selectedIndex !== null ? photos[selectedIndex] : null;
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black px-4 py-12">
-      <h1 className="mi-fuente-personalizada2 text-6xl md:text-7xl mb-12 text-center text-white tracking-wider">
-        Cristina & Miguel
-      </h1>
+    <div className="min-h-screen bg-gradient-to-b from-rose-100 to-teal-100 px-4 py-12">
+      <Link href="/">
+        <h1 className="mi-fuente-personalizada2 text-6xl md:text-7xl mb-12 text-center text-white tracking-wider">
+          Cristina & Miguel
+        </h1>
+      </Link>
       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
         initial={{ opacity: 0 }}
@@ -75,20 +87,20 @@ export default function PhotosPage() {
             <div className="loader"></div>
           </div>
         ) : photos.length > 0 ? (
-          photos.map((photo) => (
+          photos.map((photo, index) => (
             <motion.div
               key={photo.cid}
               className="group relative overflow-hidden shadow-lg cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => openModal(photo)}
+              onClick={() => openModal(index)}
             >
               <div className="relative w-full h-64 bg-gray-800">
                 <img
                   src={`https://${PINATA_GATEWAY}/files/${photo.cid}`}
                   alt={photo.name}
                   className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-                  onLoad={(e) => e.target.classList.remove("opacity-0")} // Quita el efecto de fade-in al cargar
+                  onLoad={(e) => e.target.classList.remove("opacity-0")}
                 />
               </div>
             </motion.div>
@@ -121,6 +133,15 @@ export default function PhotosPage() {
             >
               ×
             </button>
+            <button
+              className="absolute top-1/2 left-4 text-black bg-black hover:bg-opacity-80 rounded-full p-3 transition-transform transform -translate-y-1/2 appearance-none focus:outline-none"
+              onClick={(e) => {
+                e.stopPropagation();
+                showPreviousPhoto();
+              }}
+            >
+              <FaArrowLeft className="w-4 h-4 text-white" /> {/* Ícono de flecha izquierda */}
+            </button>
             <motion.img
               src={`https://${PINATA_GATEWAY}/files/${selectedPhoto.cid}`}
               alt={selectedPhoto.name}
@@ -129,6 +150,15 @@ export default function PhotosPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             />
+            <button
+              className="absolute top-1/2 right-4 text-black bg-black hover:bg-opacity-80 rounded-full p-3 transition-transform transform -translate-y-1/2"
+              onClick={(e) => {
+                e.stopPropagation();
+                showNextPhoto();
+              }}
+            >
+              <FaArrowRight className="w-4 h-4 text-white" /> {/* Ícono de flecha derecha */}
+            </button>
           </motion.div>
         </motion.div>
       )}
