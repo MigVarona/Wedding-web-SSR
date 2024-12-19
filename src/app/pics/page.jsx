@@ -42,6 +42,13 @@ export default function PhotosPage() {
     setSelectedPhoto(null);
   };
 
+  const handleClickOutside = (e) => {
+    // Cerrar el modal si se hace clic fuera de la imagen
+    if (e.target.classList.contains("modal-background")) {
+      closeModal();
+    }
+  };
+
   return (
     <div className="px-4 py-8 bg-black">
       <h1 className="mi-fuente-personalizada2 text-7xl mb-6 text-center text-white">Cristina & Miguel</h1>
@@ -66,8 +73,11 @@ export default function PhotosPage() {
       </div>
 
       {selectedPhoto && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50 transition-opacity duration-300">
-          <div className="relative bg-black p-6 rounded-lg shadow-xl max-w-4xl overflow-hidden transform transition-transform scale-100 hover:scale-105">
+        <div
+          className="modal-background fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50 transition-opacity duration-300"
+          onClick={handleClickOutside} // Aquí agregamos el manejador de clic
+        >
+          <div className="relative bg-black p-6 rounded-lg shadow-xl max-w-5xl w-full overflow-hidden transform transition-transform scale-100 hover:scale-105">
             <button
               className="absolute top-4 right-4 text-white hover:text-gray-400 text-xl font-bold"
               onClick={closeModal}
@@ -77,7 +87,7 @@ export default function PhotosPage() {
             <img
               src={`https://blue-used-tarsier-623.mypinata.cloud/files/${selectedPhoto.cid}`}
               alt={selectedPhoto.name}
-              className="w-full h-auto"
+              className="w-full h-auto max-h-[80vh] object-contain" // Ajustamos el tamaño de la imagen aquí
             />
           </div>
         </div>
