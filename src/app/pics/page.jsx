@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; // Importa los íconos
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Importa los íconos
 
 const PINATA_GATEWAY = "blue-used-tarsier-623.mypinata.cloud";
 
@@ -64,7 +64,9 @@ export default function PhotosPage() {
   };
 
   const showPreviousPhoto = () => {
-    setSelectedIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+    setSelectedIndex(
+      (prevIndex) => (prevIndex - 1 + photos.length) % photos.length
+    );
   };
 
   const selectedPhoto = selectedIndex !== null ? photos[selectedIndex] : null;
@@ -72,8 +74,19 @@ export default function PhotosPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-100 to-teal-100 px-4 py-12">
       <Link href="/">
-        <h1 className="mi-fuente-personalizada2 text-6xl md:text-7xl mb-12 text-center text-white tracking-wider">
-          Cristina & Miguel
+        <h1 className="flex flex-wrap justify-center items-center mb-16 space-x-4">
+          <span
+            className="mi-fuente-personalizada2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-none tracking-wide text-white"
+            style={{ textShadow: "4px 4px 0px black" }}
+          >
+            Cristina
+          </span>
+          <span
+            className="mi-fuente-personalizada2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-none tracking-wide text-white"
+            style={{ textShadow: "4px 4px 0px black" }}
+          >
+            Miguel
+          </span>
         </h1>
       </Link>
       <motion.div
@@ -140,7 +153,8 @@ export default function PhotosPage() {
                 showPreviousPhoto();
               }}
             >
-              <FaArrowLeft className="w-4 h-4 text-white" /> {/* Ícono de flecha izquierda */}
+              <FaArrowLeft className="w-4 h-4 text-white" />{" "}
+              {/* Ícono de flecha izquierda */}
             </button>
             <motion.img
               src={`https://${PINATA_GATEWAY}/files/${selectedPhoto.cid}`}
@@ -157,7 +171,8 @@ export default function PhotosPage() {
                 showNextPhoto();
               }}
             >
-              <FaArrowRight className="w-4 h-4 text-white" /> {/* Ícono de flecha derecha */}
+              <FaArrowRight className="w-4 h-4 text-white" />{" "}
+              {/* Ícono de flecha derecha */}
             </button>
           </motion.div>
         </motion.div>
