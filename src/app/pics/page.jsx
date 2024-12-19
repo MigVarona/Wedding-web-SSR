@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -9,7 +9,7 @@ export default function PhotosPage() {
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [loading, setLoading] = useState(true); // Agregar estado para carga
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchPhotos() {
@@ -27,7 +27,7 @@ export default function PhotosPage() {
       } catch (error) {
         setError(error.message);
       } finally {
-        setLoading(false); // Cambiar el estado de carga cuando termine
+        setLoading(false);
       }
     }
 
@@ -37,7 +37,7 @@ export default function PhotosPage() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen bg-black">
-        <div className="text-center text-red-600 bg-white p-8  shadow-lg">
+        <div className="text-center text-red-600 bg-white p-8 shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Error</h2>
           <p>{error}</p>
         </div>
@@ -83,11 +83,14 @@ export default function PhotosPage() {
               whileTap={{ scale: 0.95 }}
               onClick={() => openModal(photo)}
             >
-              <img
-                src={`https://${PINATA_GATEWAY}/files/${photo.cid}`}
-                alt={photo.name}
-                className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
-              />
+              <div className="relative w-full h-64 bg-gray-800">
+                <img
+                  src={`https://${PINATA_GATEWAY}/files/${photo.cid}`}
+                  alt={photo.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                  onLoad={(e) => e.target.classList.remove("opacity-0")} // Quita el efecto de fade-in al cargar
+                />
+              </div>
             </motion.div>
           ))
         ) : (
