@@ -34,7 +34,7 @@ export default function PhotosPage() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen bg-black">
-        <div className="text-center text-red-600 bg-white p-8 rounded-lg shadow-lg">
+        <div className="text-center text-red-600 bg-white p-8  shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Error</h2>
           <p>{error}</p>
         </div>
@@ -71,7 +71,7 @@ export default function PhotosPage() {
           photos.map((photo) => (
             <motion.div
               key={photo.cid}
-              className="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer"
+              className="group relative overflow-hidden  shadow-lg cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => openModal(photo)}
@@ -100,7 +100,7 @@ export default function PhotosPage() {
           onClick={handleClickOutside}
         >
           <motion.div 
-            className="relative bg-white rounded-lg shadow-2xl max-w-5xl w-full m-4 overflow-hidden"
+            className="relative bg-white  shadow-2xl max-w-5xl w-full m-4 overflow-hidden"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
