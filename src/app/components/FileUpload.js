@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
 import { Button } from "@/app/components/ui/button";
@@ -7,52 +7,55 @@ import { Label } from "@/app/components/ui/label";
 import { Loader2 } from 'lucide-react';
 
 export default function FileUpload() {
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]); // Cambiado de 'file' a 'files' para almacenar múltiples archivos
   const [uploading, setUploading] = useState(false);
-  const [uploadedUrl, setUploadedUrl] = useState(null);
+  const [uploadedUrls, setUploadedUrls] = useState([]); // Array para almacenar las URLs de los archivos subidos
 
   const handleFileChange = (e) => {
-    if (e.target.files?.[0]) {
-      setFile(e.target.files[0]);
+    if (e.target.files) {
+      setFiles(Array.from(e.target.files)); // Guardamos todos los archivos seleccionados
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (file) {
+    if (files.length > 0) {
       setUploading(true);
       try {
-        const formData = new FormData();
-        formData.append('file', file); // Archivo que deseas subir
-        formData.append('pinataOptions', JSON.stringify({ cidVersion: 1 }));
-        formData.append(
-          'pinataMetadata',
-          JSON.stringify({
-            name: file.name,
-            keyvalues: {
-              customKey: 'customValue',
-            },
-          })
-        );
+        const uploadedUrlsTemp = [];
+        for (const file of files) {
+          const formData = new FormData();
+          formData.append('file', file);
+          formData.append('pinataOptions', JSON.stringify({ cidVersion: 1 }));
+          formData.append(
+            'pinataMetadata',
+            JSON.stringify({
+              name: file.name,
+              keyvalues: { customKey: 'customValue' },
+            })
+          );
 
-        const response = await fetch('/api/upload', {
-          method: 'POST',
-          body: formData,
-        });
+          const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData,
+          });
 
-        if (!response.ok) {
-          throw new Error('Error al subir archivo a Pinata');
+          if (!response.ok) {
+            throw new Error('Error al subir archivo a Pinata');
+          }
+
+          const data = await response.json();
+          uploadedUrlsTemp.push(data.pinataUrl); // Almacenamos la URL de cada archivo subido
         }
 
-        const data = await response.json();
-        setUploadedUrl(data.pinataUrl); // Asume que tu endpoint devuelve `pinataUrl`
+        setUploadedUrls(uploadedUrlsTemp); // Actualizamos las URLs de todos los archivos subidos
       } catch (error) {
-        console.error('Error uploading file to Pinata:', error);
-        alert('No se pudo subir el archivo. Por favor, inténtalo nuevamente.');
+        console.error('Error uploading files to Pinata:', error);
+        alert('No se pudieron subir los archivos. Por favor, inténtalo nuevamente.');
       } finally {
         setUploading(false);
-        setFile(null);
-        e.target.reset();
+        setFiles([]); // Limpiamos el estado de los archivos
+        e.target.reset(); // Limpiamos el formulario
       }
     }
   };
@@ -62,7 +65,7 @@ export default function FileUpload() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="file-upload" className="text-[#2A2527]">
-            Subir archivo
+            Subir archivos
           </Label>
           <Input
             id="file-upload"
@@ -70,6 +73,7 @@ export default function FileUpload() {
             onChange={handleFileChange}
             className="w-full bg-[#F5F0E8] text-[#2A2527]"
             required
+            multiple // Permite seleccionar múltiples archivos
             disabled={uploading}
           />
         </div>
@@ -77,7 +81,7 @@ export default function FileUpload() {
       <Button
         type="submit"
         className="w-full mt-6 bg-[#ffce1e] text-[#2A2527] hover:bg-[#ffd84e]"
-        disabled={uploading || !file}
+        disabled={uploading || files.length === 0}
       >
         {uploading ? (
           <>
@@ -85,20 +89,13 @@ export default function FileUpload() {
             Subiendo...
           </>
         ) : (
-          'Subir archivo'
+          'Subir archivos'
         )}
       </Button>
-      {uploadedUrl && (
+      {uploadedUrls.length > 0 && (
         <div className="mt-4 text-center">
-          <p className="text-[#2A2527]">Archivo subido con éxito!</p>
-          <a
-            href={`https://${uploadedUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            Ver archivo en Pinata
-          </a>
+          <p className="text-[#2A2527]">Archivos subidos con éxito!</p>
+          
         </div>
       )}
     </form>
