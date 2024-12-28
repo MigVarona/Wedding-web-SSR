@@ -1,21 +1,24 @@
 "use client";
+
 import { useState, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Trash2, RefreshCw, Users, Home, Calendar } from 'lucide-react';
 import Link from "next/link";
 
-export default function Home() {
-  const [rsvps, setRsvps] = useState([]); // Para almacenar los datos de RSVP
-  const [loading, setLoading] = useState(true); // Para manejar el estado de carga
+export default function Dashboard() {
+  const [rsvps, setRsvps] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [totalGuests, setTotalGuests] = useState(0);
+  const [accommodationSummary, setAccommodationSummary] = useState({});
 
-  // Función para eliminar un RSVP
   const deleteRsvp = async (id) => {
     try {
       const response = await fetch(`/api/rsvp/${id}`, {
-        method: "DELETE", // Método DELETE para eliminar el recurso
+        method: "DELETE",
       });
 
       if (response.ok) {
-        setRsvps(rsvps.filter((rsvp) => rsvp._id !== id)); // Actualiza el estado eliminando el RSVP
+        setRsvps(rsvps.filter((rsvp) => rsvp._id !== id));
+        updateSummary(rsvps.filter((rsvp) => rsvp._id !== id));
       } else {
         console.error("Error al eliminar el RSVP");
       }
@@ -24,126 +27,123 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
-    const fetchRSVPs = async () => {
-      try {
-        const response = await fetch("/api/rsvp"); // Llamada a la API para obtener los RSVPs de MongoDB
-        const data = await response.json();
-        setRsvps(data.data); // Suponiendo que la respuesta tiene una propiedad 'data' que contiene los RSVPs
-      } catch (error) {
-        console.error("Error al obtener los RSVPs:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchRSVPs = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch("/api/rsvp");
+      const data = await response.json();
+      setRsvps(data.data);
+      updateSummary(data.data);
+    } catch (error) {
+      console.error("Error al obtener los RSVPs:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchRSVPs();
-  }, []);
-
-  // Función para sumar las personas por categoría de alojamiento
-  const sumGuestsByAccommodation = () => {
-    return rsvps.reduce((acc, rsvp) => {
-      const accommodation = rsvp.accommodation || "Sin alojamiento"; // Asegúrate de manejar los valores vacíos
-      const guests = parseInt(rsvp.guests, 10); // Asegúrate de convertir a número
+  const updateSummary = (data) => {
+    const summary = data.reduce((acc, rsvp) => {
+      const accommodation = rsvp.accommodation || "Sin alojamiento";
+      const guests = parseInt(rsvp.guests, 10);
 
       if (!acc[accommodation]) {
         acc[accommodation] = 0;
       }
 
-      acc[accommodation] += guests; // Suma correctamente las personas
+      acc[accommodation] += guests;
       return acc;
     }, {});
+
+    setAccommodationSummary(summary);
+    setTotalGuests(Object.values(summary).reduce((a, b) => a + b, 0));
   };
 
-  const accommodationSummary = sumGuestsByAccommodation();
+  useEffect(() => {
+    fetchRSVPs();
+  }, []);
 
   return (
-    <main className="min-h-screen bg-[#05B6CB]    flex flex-col items-center justify-between overflow-x-hidden">
-      <div className="w-full max-w-[100vw] sm:max-w-4xl mx-auto p-6 sm:p-8 border-8 sm:border-8 md:border-6 lg:border-4 border-[#05B6CB] bg-[#FF90C0] rounded-2xl overflow-hidden shadow-2xl">
-        <Link href="/" passHref>
-          <h1 className="flex flex-wrap justify-center items-center space-x-4">
-            <span
-              className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] leading-none tracking-wide text-white"
-              style={{ textShadow: "4px 4px 0px black" }}
-            >
-              Cristina
-            </span>
-            <span
-              className="mi-fuente-personalizada2 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] leading-none tracking-wide text-white"
-              style={{ textShadow: "4px 4px 0px black" }}
-            >
-              Miguel
-            </span>
-          </h1>
-        </Link>
-        <img
-          src="/y2k Asset by Annorastd-19.svg"
-          alt="Icono decorativo"
-          className="w-[900px] h-[100px] mx-auto mt-4 text-slate-50"
-        />
-        <h1 className="flex mt-8 flex-wrap justify-center items-center">
-          <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
-            LISTADE
-          </span>
-          <span className="mi-fuente-personalizada text-4xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[4rem] font-bold leading-none tracking-wide text-[#FFB7D5]">
-            INVITADOS
-          </span>
-        </h1>
-        <h1 className="flex flex-wrap justify-center items-center">
-          <span className="mi-fuente-personalizada text-2xl sm:text-2xl md:text-5xl lg:text-5xl xl:text-[2rem] font-bold leading-none tracking-wide text-[#F5F0E8]">
-            20/09
-          </span>
-        </h1>
-        <div className="flex justify-center mt-8">
-          <ChevronDown size={120} className="text-[#F5F0E8] animate-bounce" />
+    <main className="min-h-screen bg-[#05B6CB] flex flex-col items-center justify-between overflow-x-hidden">
+      <div className="w-full max-w-[100vw] mx-auto p-6 border-8 border-[#05B6CB] bg-[#FF90C0] rounded-2xl overflow-hidden shadow-2xl">
+        <div className="flex justify-between items-center mb-8">
+          <Link href="/" passHref>
+            <h1 className="flex flex-wrap items-center space-x-4">
+              <span className="mi-fuente-personalizada2 text-4xl sm:text-5xl md:text-6xl leading-none tracking-wide text-white" style={{ textShadow: "2px 2px 0px black" }}>
+                Cristina & Miguel
+              </span>
+            </h1>
+          </Link>
+          <button onClick={fetchRSVPs} className="bg-[#F5F0E8] text-[#05B6CB] p-2 rounded-full hover:bg-[#FFB7D5] transition-colors">
+            <RefreshCw size={24} />
+          </button>
         </div>
 
-        {/* Mostrar los RSVPs aquí */}
-        <section className="w-full max-w-2xl mx-auto mt-8">
-          {loading ? (
-            <p className="text-[#F5F0E8]">Cargando...</p>
-          ) : (
-            <ul className="space-y-4">
-              {rsvps.map((rsvp) => (
-                <li key={rsvp._id} className="bg-[#FFB7D5] p-4 rounded-lg">
-                  <h3 className="font-bold text-[#2A2527]">{rsvp.name}</h3>
-                  <p className="text-[#2A2527]">
-                    Número de personas: {rsvp.guests}
-                  </p>
-                  <p className="text-[#2A2527]">
-                    Alojamiento: {rsvp.accommodation}
-                  </p>
-                  <p className="text-[#2A2527]">Noches: {rsvp.nights}</p>
-                  {/* Botón para eliminar el RSVP */}
-                  <button
-                    onClick={() => deleteRsvp(rsvp._id)}
-                    className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                  >
-                    Eliminar
-                  </button>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-[#FFB7D5] p-4 rounded-lg shadow-md">
+            <h2 className="text-xl font-bold mb-2 text-[#2A2527] flex items-center">
+              <Users className="mr-2" /> Total de Invitados
+            </h2>
+            <p className="text-3xl font-bold text-[#05B6CB]">{totalGuests}</p>
+          </div>
+          <div className="bg-[#FFB7D5] p-4 rounded-lg shadow-md">
+            <h2 className="text-xl font-bold mb-2 text-[#2A2527] flex items-center">
+              <Home className="mr-2" /> Categorías de Alojamiento
+            </h2>
+            <p className="text-3xl font-bold text-[#05B6CB]">{Object.keys(accommodationSummary).length}</p>
+          </div>
+          <div className="bg-[#FFB7D5] p-4 rounded-lg shadow-md">
+            <h2 className="text-xl font-bold mb-2 text-[#2A2527] flex items-center">
+              <Calendar className="mr-2" /> Fecha del Evento
+            </h2>
+            <p className="text-3xl font-bold text-[#05B6CB]">20/09</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section className="bg-[#F5F0E8] p-6 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-4 text-[#05B6CB]">Lista de Invitados</h2>
+            {loading ? (
+              <p className="text-[#2A2527]">Cargando...</p>
+            ) : (
+              <ul className="space-y-4 max-h-[400px] overflow-y-auto">
+                {rsvps.map((rsvp) => (
+                  <li key={rsvp._id} className="bg-[#FFB7D5] p-4 rounded-lg flex justify-between items-center">
+                    <div>
+                      <h3 className="font-bold text-[#2A2527]">{rsvp.name}</h3>
+                      <p className="text-[#2A2527]">Personas: {rsvp.guests}</p>
+                      <p className="text-[#2A2527]">Alojamiento: {rsvp.accommodation}</p>
+                      <p className="text-[#2A2527]">Noches: {rsvp.nights}</p>
+                    </div>
+                    <button
+                      onClick={() => deleteRsvp(rsvp._id)}
+                      className="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+                    >
+                      <Trash2 size={20} />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          <section className="bg-[#F5F0E8] p-6 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-4 text-[#05B6CB]">Resumen por Alojamiento</h2>
+            <ul className="space-y-4 max-h-[400px] overflow-y-auto">
+              {Object.entries(accommodationSummary).map(([accommodation, count]) => (
+                <li key={accommodation} className="bg-[#FFB7D5] p-4 rounded-lg">
+                  <h3 className="font-bold text-[#2A2527]">{accommodation}</h3>
+                  <p className="text-[#2A2527]">Total de personas: {count}</p>
                 </li>
               ))}
             </ul>
-          )}
-        </section>
+          </section>
+        </div>
 
-        {/* Mostrar la suma de personas por categoría */}
-        <section className="w-full max-w-2xl mx-auto mt-8">
-          <h2 className="text-3xl font-bold mb-6 text-[#F5F0E8]">
-            Resumen por categoría de alojamiento
-          </h2>
-          <ul className="space-y-4">
-            {Object.keys(accommodationSummary).map((accommodation) => (
-              <li key={accommodation} className="bg-[#FFB7D5] p-4 rounded-lg">
-                <h3 className="font-bold text-[#2A2527]">{accommodation}</h3>
-                <p className="text-[#2A2527]">
-                  Total de personas: {accommodationSummary[accommodation]}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <div className="flex justify-center mt-8">
+          <ChevronDown size={60} className="text-[#F5F0E8] animate-bounce" />
+        </div>
       </div>
     </main>
   );
 }
+
