@@ -77,11 +77,11 @@ export default function RSVPForm() {
           />
         </div>
         <div>
-          <Label className="text-[#2A2527]">Alojamiento</Label>
+          <Label className="text-[#2A2527]">Alojamiento, ¿que vas a traer?</Label>
           <RadioGroup
             value={accommodation}
             onValueChange={setAccommodation}
-            className="flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-2"
+            className="flex mt-4 flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-2"
           >
             <div className="flex w-full sm:w-auto items-center space-x-2">
               <RadioGroupItem
