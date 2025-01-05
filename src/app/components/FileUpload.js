@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from "lucide-react";
+import Link from "next/link";
 
 export default function FileUpload() {
   const [files, setFiles] = useState([]); // Cambiado de 'file' a 'files' para almacenar múltiples archivos
@@ -25,23 +26,23 @@ export default function FileUpload() {
         const uploadedUrlsTemp = [];
         for (const file of files) {
           const formData = new FormData();
-          formData.append('file', file);
-          formData.append('pinataOptions', JSON.stringify({ cidVersion: 1 }));
+          formData.append("file", file);
+          formData.append("pinataOptions", JSON.stringify({ cidVersion: 1 }));
           formData.append(
-            'pinataMetadata',
+            "pinataMetadata",
             JSON.stringify({
               name: file.name,
-              keyvalues: { customKey: 'customValue' },
+              keyvalues: { customKey: "customValue" },
             })
           );
 
-          const response = await fetch('/api/upload', {
-            method: 'POST',
+          const response = await fetch("/api/upload", {
+            method: "POST",
             body: formData,
           });
 
           if (!response.ok) {
-            throw new Error('Error al subir archivo a Pinata');
+            throw new Error("Error al subir archivo a Pinata");
           }
 
           const data = await response.json();
@@ -50,8 +51,10 @@ export default function FileUpload() {
 
         setUploadedUrls(uploadedUrlsTemp); // Actualizamos las URLs de todos los archivos subidos
       } catch (error) {
-        console.error('Error uploading files to Pinata:', error);
-        alert('No se pudieron subir los archivos. Por favor, inténtalo nuevamente.');
+        console.error("Error uploading files to Pinata:", error);
+        alert(
+          "No se pudieron subir los archivos. Por favor, inténtalo nuevamente."
+        );
       } finally {
         setUploading(false);
         setFiles([]); // Limpiamos el estado de los archivos
@@ -61,7 +64,10 @@ export default function FileUpload() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto bg-[#FFB7D5] p-6 rounded-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-md mx-auto bg-[#FFB7D5] p-6 rounded-lg"
+    >
       <div className="space-y-4">
         <div>
           <Label htmlFor="file-upload" className="text-[#2A2527]">
@@ -89,15 +95,21 @@ export default function FileUpload() {
             Subiendo...
           </>
         ) : (
-          'Subir archivos'
+          "Subir archivos"
         )}
       </Button>
       {uploadedUrls.length > 0 && (
         <div className="mt-4 text-center">
           <p className="text-[#2A2527]">Archivos subidos con éxito!</p>
-          
         </div>
       )}
+      <div className="mt-6 text-center">
+        <Link href="/pics">
+          <Button className="bg-[#ffce1e] text-[#2A2527] hover:bg-[#ffd84e]">
+            Ir a la Galería
+          </Button>
+        </Link>
+      </div>
     </form>
   );
 }
