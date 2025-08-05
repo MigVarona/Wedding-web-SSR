@@ -18,7 +18,7 @@ const miFuente2 = localFont({
 
 export const metadata = {
   title: 'Cris y Miguel ',
-  description: 'Tunkashila 21/09',
+  description: 'Tunkashila 20/09',
 }
 
 export default function RootLayout({ children }) {
