@@ -12,6 +12,8 @@ import Link from "next/link";
 export default function Home() {
   const [messages, setMessages] = useState([]);
   const [showPlayer, setShowPlayer] = useState(false);
+  const [showImageModal, setShowImageModal] = useState(false);
+
 
   const fetchMessages = async () => {
     const response = await fetch("/api/guestbook");
@@ -178,11 +180,38 @@ export default function Home() {
                   alt="Mapa"
                   width={600}
                   height={200}
-                  className="rounded-lg shadow-md object-cover"
+                  className="rounded-lg shadow-md object-cover cursor-pointer"
+                  onClick={() => setShowImageModal(true)}
                 />
               </div>
-            
             </section>
+            {showImageModal && (
+              <div
+                className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
+                onClick={() => setShowImageModal(false)}
+              >
+                <div
+                  className="relative max-w-4xl w-full"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    className="absolute top-2 right-4 text-white text-3xl font-bold z-10"
+                    onClick={() => setShowImageModal(false)}
+                  >
+                    &times;
+                  </button>
+                  <Image
+                    src="https://res.cloudinary.com/dyji6w7iu/image/upload/v1754509909/WhatsApp_Image_2025-08-06_at_19.53.35_tdne18.jpg"
+                    alt="Mapa grande"
+                    width={1200}
+                    height={800}
+                    className="rounded-lg shadow-lg w-full h-auto object-contain"
+                  />
+                </div>
+              </div>
+            )}
+
+
 
 
             <section className="w-full max-w-2xl mx-auto mt-20 my-12 bg-[#FFB7D5] p-8 rounded-xl shadow-lg">
