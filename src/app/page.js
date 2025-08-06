@@ -169,6 +169,25 @@ export default function Home() {
             <section className="w-full max-w-2xl mx-auto mt-20 my-12 bg-[#FFB7D5] p-8 rounded-xl shadow-lg">
               <h2 className="flex mb-12 flex-wrap justify-center items-center">
                 <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                  Mapa
+                </span>
+              </h2>
+              <div className="flex justify-center items-center mt-8">
+                <Image
+                  src="https://res.cloudinary.com/dyji6w7iu/image/upload/v1754509909/WhatsApp_Image_2025-08-06_at_19.53.35_tdne18.jpg"
+                  alt="Mapa"
+                  width={600}
+                  height={200}
+                  className="rounded-lg shadow-md object-cover"
+                />
+              </div>
+            
+            </section>
+
+
+            <section className="w-full max-w-2xl mx-auto mt-20 my-12 bg-[#FFB7D5] p-8 rounded-xl shadow-lg">
+              <h2 className="flex mb-12 flex-wrap justify-center items-center">
+                <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F5F0E8] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
                   Sube
                 </span>
                 <span className="mi-fuente-personalizada text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] font-bold leading-none tracking-wide text-[#F896D8] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
