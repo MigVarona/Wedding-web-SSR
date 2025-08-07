@@ -176,7 +176,7 @@ export default function Home() {
               </h2>
               <div className="flex justify-center items-center mt-8">
                 <Image
-                  src="https://res.cloudinary.com/dyji6w7iu/image/upload/v1754509909/WhatsApp_Image_2025-08-06_at_19.53.35_tdne18.jpg"
+                  src="https://res.cloudinary.com/dyji6w7iu/image/upload/v1754579068/1_hzqyht.jpg"
                   alt="Mapa"
                   width={600}
                   height={200}
@@ -201,7 +201,7 @@ export default function Home() {
                     &times;
                   </button>
                   <Image
-                    src="https://res.cloudinary.com/dyji6w7iu/image/upload/v1754509909/WhatsApp_Image_2025-08-06_at_19.53.35_tdne18.jpg"
+                    src="https://res.cloudinary.com/dyji6w7iu/image/upload/v1754579068/1_hzqyht.jpg"
                     alt="Mapa grande"
                     width={1200}
                     height={800}
