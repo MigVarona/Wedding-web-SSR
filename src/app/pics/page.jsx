@@ -7,29 +7,44 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const PINATA_GATEWAY = "blue-used-tarsier-623.mypinata.cloud";
 
-// --- define el código de acceso aquí ---
-const ACCESS_CODE = "pixurrislife";
-
 export default function PhotosPage() {
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // estado para acceso
+  // acceso
   const [inputCode, setInputCode] = useState("");
   const [isAuthorized, setIsAuthorized] = useState(false);
 
-  // comprobar fotos
+  // login handler
+  const handleLogin = async () => {
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: inputCode }),
+      });
+
+      if (res.ok) {
+        setIsAuthorized(true);
+      } else {
+        alert("Código incorrecto");
+      }
+    } catch (err) {
+      alert("Error al intentar acceder");
+    }
+  };
+
+  // cargar fotos solo si está autorizado
   useEffect(() => {
-    if (!isAuthorized) return; // no cargues fotos hasta tener acceso
+    if (!isAuthorized) return;
 
     async function fetchPhotos() {
       try {
-        const response = await fetch("/api/photos", { method: "GET" });
+        const response = await fetch("/api/photos");
         if (!response.ok) {
-          const errorData = await response.text();
-          throw new Error(`Error al obtener las fotos: ${errorData}`);
+          throw new Error("Error al obtener las fotos");
         }
         const data = await response.json();
         setPhotos(data);
@@ -43,7 +58,7 @@ export default function PhotosPage() {
     fetchPhotos();
   }, [isAuthorized]);
 
-  // control modal
+  // modal
   const openModal = (index) => setSelectedIndex(index);
   const closeModal = () => setSelectedIndex(null);
   const handleClickOutside = (e) => {
@@ -52,15 +67,13 @@ export default function PhotosPage() {
     }
   };
   const showNextPhoto = () =>
-    setSelectedIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    setSelectedIndex((prev) => (prev + 1) % photos.length);
   const showPreviousPhoto = () =>
-    setSelectedIndex(
-      (prevIndex) => (prevIndex - 1 + photos.length) % photos.length
-    );
+    setSelectedIndex((prev) => (prev - 1 + photos.length) % photos.length);
 
   const selectedPhoto = selectedIndex !== null ? photos[selectedIndex] : null;
 
-  // Si no está autorizado, mostramos la pantalla de login
+  // pantalla de login
   if (!isAuthorized) {
     return (
       <div className="flex items-center justify-center h-screen bg-gradient-to-b from-gray-900 to-gray-700">
@@ -75,13 +88,7 @@ export default function PhotosPage() {
             placeholder="Código"
           />
           <button
-            onClick={() => {
-              if (inputCode === ACCESS_CODE) {
-                setIsAuthorized(true);
-              } else {
-                alert("Código incorrecto");
-              }
-            }}
+            onClick={handleLogin}
             className="w-full bg-black text-white p-2 rounded hover:bg-gray-800 transition"
           >
             Entrar
@@ -91,7 +98,7 @@ export default function PhotosPage() {
     );
   }
 
-  // contenido normal si está autorizado
+  // si está autorizado → mostrar fotos
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-100 to-teal-100 px-4 py-12">
       <Link href="/">
@@ -169,7 +176,7 @@ export default function PhotosPage() {
               ×
             </button>
             <button
-              className="absolute top-1/2 left-4 text-black bg-black hover:bg-opacity-80 rounded-full p-3 transition-transform transform -translate-y-1/2 appearance-none focus:outline-none"
+              className="absolute top-1/2 left-4 text-black bg-black hover:bg-opacity-80 rounded-full p-3 transform -translate-y-1/2"
               onClick={(e) => {
                 e.stopPropagation();
                 showPreviousPhoto();
@@ -186,7 +193,7 @@ export default function PhotosPage() {
               transition={{ delay: 0.2 }}
             />
             <button
-              className="absolute top-1/2 right-4 text-black bg-black hover:bg-opacity-80 rounded-full p-3 transition-transform transform -translate-y-1/2"
+              className="absolute top-1/2 right-4 text-black bg-black hover:bg-opacity-80 rounded-full p-3 transform -translate-y-1/2"
               onClick={(e) => {
                 e.stopPropagation();
                 showNextPhoto();
