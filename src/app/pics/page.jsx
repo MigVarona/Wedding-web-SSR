@@ -8,7 +8,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 const PINATA_GATEWAY = "blue-used-tarsier-623.mypinata.cloud";
 
 // --- define el código de acceso aquí ---
-const ACCESS_CODE = "1234";
+const ACCESS_CODE = "pixurrislife";
 
 export default function PhotosPage() {
   const [photos, setPhotos] = useState([]);
