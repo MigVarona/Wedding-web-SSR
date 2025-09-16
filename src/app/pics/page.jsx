@@ -3,9 +3,12 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Importa los íconos
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const PINATA_GATEWAY = "blue-used-tarsier-623.mypinata.cloud";
+
+// --- define el código de acceso aquí ---
+const ACCESS_CODE = "1234";
 
 export default function PhotosPage() {
   const [photos, setPhotos] = useState([]);
@@ -13,7 +16,14 @@ export default function PhotosPage() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // estado para acceso
+  const [inputCode, setInputCode] = useState("");
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
+  // comprobar fotos
   useEffect(() => {
+    if (!isAuthorized) return; // no cargues fotos hasta tener acceso
+
     async function fetchPhotos() {
       try {
         const response = await fetch("/api/photos", { method: "GET" });
@@ -22,7 +32,6 @@ export default function PhotosPage() {
           throw new Error(`Error al obtener las fotos: ${errorData}`);
         }
         const data = await response.json();
-        console.log("Fotos obtenidas:", data);
         setPhotos(data);
       } catch (error) {
         setError(error.message);
@@ -32,45 +41,57 @@ export default function PhotosPage() {
     }
 
     fetchPhotos();
-  }, []);
+  }, [isAuthorized]);
 
-  if (error) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-black">
-        <div className="text-center text-red-600 bg-white p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-4">Error</h2>
-          <p>{error}</p>
-        </div>
-      </div>
-    );
-  }
-
-  const openModal = (index) => {
-    setSelectedIndex(index);
-  };
-
-  const closeModal = () => {
-    setSelectedIndex(null);
-  };
-
+  // control modal
+  const openModal = (index) => setSelectedIndex(index);
+  const closeModal = () => setSelectedIndex(null);
   const handleClickOutside = (e) => {
     if (e.target.classList.contains("modal-background")) {
       closeModal();
     }
   };
-
-  const showNextPhoto = () => {
+  const showNextPhoto = () =>
     setSelectedIndex((prevIndex) => (prevIndex + 1) % photos.length);
-  };
-
-  const showPreviousPhoto = () => {
+  const showPreviousPhoto = () =>
     setSelectedIndex(
       (prevIndex) => (prevIndex - 1 + photos.length) % photos.length
     );
-  };
 
   const selectedPhoto = selectedIndex !== null ? photos[selectedIndex] : null;
 
+  // Si no está autorizado, mostramos la pantalla de login
+  if (!isAuthorized) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-gradient-to-b from-gray-900 to-gray-700">
+        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-sm text-center">
+          <h2 className="text-2xl font-bold mb-4">Acceso restringido</h2>
+          <p className="text-gray-600 mb-4">Introduce el código de acceso:</p>
+          <input
+            type="password"
+            value={inputCode}
+            onChange={(e) => setInputCode(e.target.value)}
+            className="w-full p-2 border rounded mb-4"
+            placeholder="Código"
+          />
+          <button
+            onClick={() => {
+              if (inputCode === ACCESS_CODE) {
+                setIsAuthorized(true);
+              } else {
+                alert("Código incorrecto");
+              }
+            }}
+            className="w-full bg-black text-white p-2 rounded hover:bg-gray-800 transition"
+          >
+            Entrar
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // contenido normal si está autorizado
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-100 to-teal-100 px-4 py-12">
       <Link href="/">
@@ -89,6 +110,7 @@ export default function PhotosPage() {
           </span>
         </h1>
       </Link>
+
       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
         initial={{ opacity: 0 }}
@@ -153,8 +175,7 @@ export default function PhotosPage() {
                 showPreviousPhoto();
               }}
             >
-              <FaArrowLeft className="w-4 h-4 text-white" />{" "}
-              {/* Ícono de flecha izquierda */}
+              <FaArrowLeft className="w-4 h-4 text-white" />
             </button>
             <motion.img
               src={`https://${PINATA_GATEWAY}/files/${selectedPhoto.cid}`}
@@ -171,8 +192,7 @@ export default function PhotosPage() {
                 showNextPhoto();
               }}
             >
-              <FaArrowRight className="w-4 h-4 text-white" />{" "}
-              {/* Ícono de flecha derecha */}
+              <FaArrowRight className="w-4 h-4 text-white" />
             </button>
           </motion.div>
         </motion.div>
